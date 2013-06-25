@@ -1,4 +1,5 @@
 Meteor.startShareJS = ->
+
   # Creates a (persistent) ShareJS server
   # Roughly copied from https://github.com/share/ShareJS/wiki/Getting-started
 
