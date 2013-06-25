@@ -7,7 +7,7 @@ Handlebars.registerHelper "sharejsAce", (docid, options) ->
   return new Handlebars.SafeString Template._sharejsAce(id: id, docid: docid)
 
 host = window.location.hostname
-port = Meteor.settings.public?.sharejs?.port || 3003
+port = Meteor.settings?.public?.sharejs?.port || 3003
 
 cleanup = ->
   # Detach event listeners from the textarea, unless you want crazy shit happenin'
