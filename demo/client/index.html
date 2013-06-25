@@ -1,0 +1,43 @@
+<head>
+  <title>Meteor Docs!</title>
+</head>
+
+<body>
+    {{> main}}
+</body>
+
+<template name="main">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                {{> docList}}
+            </div>
+            <div class="span9">
+                {{> editor}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="docList">
+    <ul class="nav nav-pills nav-stacked">
+    {{#each documents}}
+    {{> docItem}}
+    {{/each}}
+    </ul>
+    <button class="btn btn-warning">New document</button>
+</template>
+
+<template name="docItem">
+    <li {{#if current}}class="active"{{/if}}>
+         <a href="#">{{title}}</a>
+    </li>
+</template>
+
+<template name="editor">
+    {{#if docid}}
+    <input class="input-xlarge" type="text" value="{{title}}">
+    <button class="btn btn-danger btn-small">Delete this document</button>
+    {{sharejsAce docid id="editor"}}
+    {{/if}}
+</template>

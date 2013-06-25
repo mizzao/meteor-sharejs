@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "sharejs": {}
+    },
+    "packages": {
+      "sharejs": {
+        "git": "https://github.com/mizzao/meteor-sharejs.git",
+        "tag": "v0.2.0",
+        "commit": "9bbc510b7ee079ec8ff9745ed51e8fe8405e1af5"
+      }
+    }
+  }
+}
