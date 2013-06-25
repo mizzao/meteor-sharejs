@@ -3,7 +3,7 @@ Meteor.startShareJS = ->
   # Creates a (persistent) ShareJS server
   # Roughly copied from https://github.com/share/ShareJS/wiki/Getting-started
 
-  port = Meteor.settings.public.sharejs.port || 3003
+  port = Meteor.settings?.public?.sharejs?.port || 3003
 
   connect = Npm.require('connect')
   sharejs = Npm.require('share').server
