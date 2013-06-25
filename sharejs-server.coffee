@@ -22,12 +22,12 @@ Meteor.startShareJS = ->
   try
     Npm.require('redis')
     options.db = {type: 'redis'}
-    Meteor._debug "Redis persistence is enabled."
+    Meteor._debug "ShareJS: Redis persistence is enabled."
   catch e
-    Meteor._debug "Redis module not found."
+    Meteor._debug "ShareJS: Redis module not found. Documents will be in-memory only."
 
   # Attach the sharejs REST and Socket.io interfaces to the server
   sharejs.attach(server, options);
 
   server.listen port, ->
-    console.log('ShareJS server running at http://localhost:' + port)
+    Meteor._debug('ShareJS server running at http://localhost:' + port)
