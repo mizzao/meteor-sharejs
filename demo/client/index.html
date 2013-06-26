@@ -20,11 +20,13 @@
 </template>
 
 <template name="docList">
-    <ul class="nav nav-pills nav-stacked">
+    <h3>Pick a document...</h3>
+    <ul class="nav nav-pills nav-stacked" id="list">
     {{#each documents}}
     {{> docItem}}
     {{/each}}
     </ul>
+    <h3>...or start a new one:</h3>
     <button class="btn btn-warning">New document</button>
 </template>
 
@@ -39,5 +41,6 @@
     <input class="input-xlarge" type="text" value="{{title}}">
     <button class="btn btn-danger btn-small">Delete this document</button>
     {{sharejsAce docid id="editor"}}
+    <h3>Edit from multiple browsers for maximum wow!</h3>
     {{/if}}
 </template>
