@@ -3,6 +3,8 @@ meteor-sharejs
 
 Meteor smart package for transparently adding ShareJS editors to an app
 
+Demo app: http://documents.meteor.com (source: https://github.com/mizzao/meteor-documents-demo)
+
 ## Install
 
 ```
