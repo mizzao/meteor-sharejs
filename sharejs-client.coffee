@@ -6,8 +6,7 @@ Handlebars.registerHelper "sharejsAce", (docid, options) ->
   id = options.hash.id || "sharejsAceEditor"
   return new Handlebars.SafeString Template._sharejsAce(id: id, docid: docid)
 
-host = window.location.hostname
-port = Meteor.settings?.public?.sharejs?.port || 3003
+host = window.location.host
 
 cleanup = ->
   # Detach event listeners from the textarea, unless you want crazy shit happenin'
@@ -16,7 +15,7 @@ cleanup = ->
     @_elem = null
   # Detach ace editor, if any
   if @_editor
-    @_doc.detach_ace()
+    @_doc?.detach_ace()
     @_editor = null
   # Close connection to the node server
   if @_doc
@@ -29,7 +28,7 @@ Template._sharejsText.rendered = ->
 
   @_elem = document.getElementById(@data.id);
 
-  sharejs.open @data.docid, 'text', 'http://' + host + ':' + port + '/channel', (error, doc) =>
+  sharejs.open @data.docid, 'text', 'http://' + host + '/channel', (error, doc) =>
     if error
       @_elem.disabled = true
       console.log error
@@ -47,7 +46,7 @@ Template._sharejsAce.rendered = ->
 
   @_editor = ace.edit(@data.id)
 
-  sharejs.open @data.docid, 'text', 'http://' + host + ':' + port + '/channel', (error, doc) =>
+  sharejs.open @data.docid, 'text', 'http://' + host + '/channel', (error, doc) =>
     if error
       console.log error
     else
