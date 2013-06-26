@@ -11,11 +11,11 @@ host = window.location.host
 cleanup = ->
   # Detach event listeners from the textarea, unless you want crazy shit happenin'
   if @_elem
-    @_elem.detach_share()
+    @_elem.detach_share?()
     @_elem = null
   # Detach ace editor, if any
   if @_editor
-    @_doc?.detach_ace()
+    @_doc?.detach_ace?()
     @_editor = null
   # Close connection to the node server
   if @_doc
@@ -33,9 +33,11 @@ Template._sharejsText.rendered = ->
       @_elem.disabled = true
       console.log error
     else
+      # Don't attach duplicate editors if re-render happens too fast
+      return unless @_editor? and doc.name is @data.docid
       @_elem.disabled = false
       doc.attach_textarea(@_elem)
-    @_doc = doc
+      @_doc = doc
 
 Template._sharejsText.destroyed = ->
   cleanup.call(@)
@@ -50,8 +52,10 @@ Template._sharejsAce.rendered = ->
     if error
       console.log error
     else
+      # Don't attach duplicate editors if re-render happens too fast
+      return unless @_editor? and doc.name is @data.docid
       doc.attach_ace(@_editor)
-    @_doc = doc
+      @_doc = doc
 
 Template._sharejsAce.destroyed = ->
   cleanup.call(@)
