@@ -1,5 +1,7 @@
 {
   "packages": {
-    "sharejs": {}
+    "sharejs": {
+      "path": "../meteor-sharejs"
+    }
   }
 }

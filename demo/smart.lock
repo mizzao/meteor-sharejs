@@ -2,13 +2,13 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "sharejs": {}
+      "sharejs": {
+        "path": "../meteor-sharejs"
+      }
     },
     "packages": {
       "sharejs": {
-        "git": "https://github.com/mizzao/meteor-sharejs.git",
-        "tag": "v0.2.0",
-        "commit": "89a9a624495ca2c04010d5111e3f4c602dc81088"
+        "path": "../meteor-sharejs"
       }
     }
   }
