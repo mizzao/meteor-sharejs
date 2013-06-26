@@ -7,6 +7,9 @@ Template.docList.events =
   "click button": ->
     Documents.insert
       title: "untitled"
+    , (err, id) ->
+        return unless id
+        Session.set("document", id)
 
 Template.docItem.current = ->
   @_id is Session.get("document")
