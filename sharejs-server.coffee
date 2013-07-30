@@ -17,9 +17,6 @@ try
 catch e
   Meteor._debug "ShareJS: Redis module not found. Documents will be in-memory only."
 
-# Grab the meteor connect server
-server = __meteor_bootstrap__.app
-
-# Attach the sharejs REST and Socket.io interfaces as middleware
+# Attach the sharejs REST and Socket.io interfaces as middleware to the meteor connect server
 sharejs = Npm.require('share').server
-sharejs.attach(server, options);
+sharejs.attach(WebApp.connectHandlers, options);
