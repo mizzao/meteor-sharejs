@@ -4,5 +4,8 @@
     "homepage": "https://github.com/mizzao/meteor-sharejs",
     "author": "Andrew Mao  (http://www.andrewmao.net)",
     "version": "0.2.3",
-    "git": "https://github.com/mizzao/meteor-sharejs.git"
+    "git": "https://github.com/mizzao/meteor-sharejs.git",
+    "packages": {
+        "redis": {}
+    }
 }

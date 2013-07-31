@@ -11,8 +11,10 @@ options =
 
 # Lets try and enable redis persistance if redis is installed...
 try
-  Npm.require('redis')
-  options.db = {type: 'redis'}
+  redis = Npm.require('redis')
+  options.db =
+    type: 'redis'
+    client: redis.createClient() # (port, host, options): defaults to 6379, 127.0.0.1
   Meteor._debug "ShareJS: Redis persistence is enabled."
 catch e
   Meteor._debug "ShareJS: Redis module not found. Documents will be in-memory only."

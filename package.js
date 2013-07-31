@@ -11,6 +11,8 @@ Package.on_use(function (api) {
     api.use('webapp', 'server');
     api.use('coffeescript', both);
 
+    api.use('redis', 'server');
+
     // ShareJS script files
     api.add_files([
         '.npm/package/node_modules/share/node_modules/browserchannel/dist/bcsocket.js',
