@@ -2,7 +2,11 @@ Package.describe({
     summary: "server (& client library) to allow concurrent editing of any kind of content"
 });
 
-Npm.depends({share: "0.6.2"});
+Npm.depends({
+    share: "0.6.2",
+    hiredis: '0.1.15', // See also https://github.com/stevemanuel/meteor-redis
+    redis: '0.8.4'
+});
 
 var both = ['client', 'server'];
 
@@ -10,8 +14,6 @@ Package.on_use(function (api) {
     api.use(['handlebars', 'templating'], 'client');
     api.use('webapp', 'server');
     api.use('coffeescript', both);
-
-    api.use('redis', 'server');
 
     // ShareJS script files
     api.add_files([
