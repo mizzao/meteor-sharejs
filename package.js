@@ -11,9 +11,9 @@ Npm.depends({
 var both = ['client', 'server'];
 
 Package.on_use(function (api) {
-    api.use(['handlebars', 'templating'], 'client');
-    api.use('webapp', 'server');
     api.use('coffeescript', both);
+    api.use(['handlebars', 'templating'], 'client');
+    api.use(['underscore', 'webapp'], 'server');
 
     // ShareJS script files
     api.add_files([
