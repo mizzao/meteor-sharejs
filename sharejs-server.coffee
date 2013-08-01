@@ -16,9 +16,7 @@ if options.db.type is 'redis'
   try
     redis = Npm.require('redis')
 
-    # (port, host, options): defaults to 6379, 127.0.0.1
-    client = redis.createClient(options.db.port, options.db.host)
-
+    client = redis.createClient(options.db.port, options.db.host) # (port, host, options): defaults to 6379, 127.0.0.1
     client.on "error", (err) ->
       Meteor._debug("ShareJS: Error connecting to redis: " + err)
 

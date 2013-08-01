@@ -2,8 +2,11 @@ Handlebars.registerHelper "sharejsText", (docid, options) ->
   id = options.hash.id || "sharejsTextEditor"
   return new Handlebars.SafeString Template._sharejsText(id: id, docid: docid)
 
+aceConfigCallback = null
+
 Handlebars.registerHelper "sharejsAce", (docid, options) ->
   id = options.hash.id || "sharejsAceEditor"
+  aceConfigCallback = options.hash.callback
   return new Handlebars.SafeString Template._sharejsAce(id: id, docid: docid)
 
 host = window.location.host
@@ -47,6 +50,7 @@ Template._sharejsAce.rendered = ->
   cleanup.call(@)
 
   @_editor = ace.edit(@data.id)
+  @_editor.setReadOnly(true); # Disable editing until share is connected
 
   sharejs.open @data.docid, 'text', 'http://' + host + '/channel', (error, doc) =>
     if error
@@ -54,8 +58,13 @@ Template._sharejsAce.rendered = ->
     else
       # Don't attach duplicate editors if re-render happens too fast
       return unless @_editor? and doc.name is @data.docid
+
       doc.attach_ace(@_editor)
+      @_editor.setReadOnly(false);
       @_doc = doc
+
+  # Configure the editor as requested
+  aceConfigCallback?(@_editor)
 
 Template._sharejsAce.destroyed = ->
   cleanup.call(@)

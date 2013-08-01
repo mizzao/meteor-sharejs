@@ -28,6 +28,22 @@ Use this helper to get an Ace editor. Make sure you specify a size (via CSS) on 
 
 The templates will clean themselves up when re-rendered (i.e., you have several documents and docid changes.)
 
+### Configuration
+
+For the Ace editor, define a custom callback in the options hash and pass it in to configure the editor after it is rendered.
+```
+{{sharejsAce document callback=config id="editor"}}
+```
+
+ Note that the helper has to return a function inside of a function:
+```
+Template.foo.config = ->
+  (editor) ->
+    # Set some reasonable options on the editor
+    editor.setShowPrintMargin(false)
+    editor.getSession().setUseWrapMode(true)
+```
+
 ## Persistence
 
 To use Redis to persist the documents (so that you don't use them every time Meteor restarts), fire up a Redis instance and put the following in your settings file. Make sure to run meteor with the settings: `meteor --settings yoursettings.json`.
