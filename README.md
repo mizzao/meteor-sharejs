@@ -67,5 +67,6 @@ ShareJS 0.7.0+ will apparently support mongo-backed documents, but we're using R
 - There's currently no security on this; ShareJS is agnostic to the Meteor users. The document ids are used for access.
 - It's best to create a `Meteor.Collection` for your documents which generates good unique ids to connect to ShareJS with. Use these to render the templates above.
 - Importing ace dependencies is somewhat unsatisfactory. Waiting for improvements to Meteor package management system.
+- Need to integrate ShareJS auth with Meteor accounts.
 
 Please submit pull requests for better features and cooperation!

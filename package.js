@@ -13,7 +13,7 @@ var both = ['client', 'server'];
 Package.on_use(function (api) {
     api.use('coffeescript', both);
     api.use(['handlebars', 'templating'], 'client');
-    api.use(['underscore', 'webapp'], 'server');
+    api.use(['routepolicy', 'underscore', 'webapp'], 'server');
 
     // ShareJS script files
     api.add_files([

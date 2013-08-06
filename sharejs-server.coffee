@@ -31,6 +31,9 @@ if options.db.type is 'redis'
 else
   Meteor._debug "ShareJS: using db type " + options.db.type
 
+# Declare the path that ShareJS uses to Meteor
+RoutePolicy.declare('/connect', 'network');
+
 # Attach the sharejs REST and Socket.io interfaces as middleware to the meteor connect server
 sharejs = Npm.require('share').server
 sharejs.attach(WebApp.connectHandlers, options);
