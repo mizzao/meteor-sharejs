@@ -6,6 +6,5 @@
     "version": "0.2.3",
     "git": "https://github.com/mizzao/meteor-sharejs.git",
     "packages": {
-        "redis": {}
     }
 }
