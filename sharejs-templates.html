@@ -1,7 +1,15 @@
 <head>
-    <!-- TODO: can't use this right now, loaded too late compared to ShareJS Ace
+    <!-- This always gets latest version of Ace editor -->
     <script src="http://ajaxorg.github.com/ace/build/src/ace.js"></script>
+
+    <!--
+        These need to load after the above,
+        hence why they're in this <head> tag.
+        To prevent snafus, comment out one of these if
+        you don't need them in a deployed application
     -->
+    <script src="/packages/sharejs/.npm/package/node_modules/share/webclient/ace.js"></script>
+    <script src="/packages/sharejs/.npm/package/node_modules/share/webclient/textarea.js"></script>
 </head>
 
 <template name="_sharejsText">
