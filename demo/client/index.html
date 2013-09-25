@@ -7,13 +7,23 @@
 </body>
 
 <template name="main">
-    <div class="container-fluid">
-        <div class="row-fluid">
+    <div class="container full-height">
+        <div class="row upper">
             <div class="span3">
                 {{> docList}}
             </div>
-            <div class="span9">
+            <div class="span9 editor-container full-height">
                 {{> editor}}
+            </div>
+        </div>
+        <div class="row footer">
+            <div class="span3">
+                <h3>
+                    <a href="https://github.com/mizzao/meteor-documents-demo" target="_blank">Get the source</a>
+                </h3>
+            </div>
+            <div class="span9">
+                <h3>Edit from multiple browsers for maximum wow!</h3>
             </div>
         </div>
     </div>
@@ -28,21 +38,28 @@
     </ul>
     <h3>...or start a new one:</h3>
     <button class="btn btn-warning">New document</button>
-    <br>
-    <a href="https://github.com/mizzao/meteor-documents-demo">Get the source</a>
 </template>
 
 <template name="docItem">
-    <li {{#if current}}class="active"{{/if}}>
+    <li class="{{#if current}}active{{/if}}">
          <a href="#">{{title}}</a>
     </li>
 </template>
 
 <template name="editor">
-    {{#if docid}}
-    <input class="input-xlarge" type="text" value="{{title}}">
-    <button class="btn btn-danger btn-small">Delete this document</button>
-    {{sharejsAce docid id="editor"}}
-    <h3>Edit from multiple browsers for maximum wow!</h3>
-    {{/if}}
+    {{#withif docid}}
+        {{> docTitle this}}
+        {{sharejsAce this callback=config id="editor"}}
+    {{/withif}}
+</template>
+
+<template name="docTitle">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <form class="navbar-form pull-left">
+                <input class="input-xlarge" type="text" value="{{title}}">
+                <button class="btn btn-danger btn-small">Delete this document</button>
+            </form>
+        </div>
+    </div>
 </template>

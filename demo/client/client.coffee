@@ -1,4 +1,6 @@
-
+Handlebars.registerHelper "withif", (obj, options) ->
+  console.log obj
+  if obj then options.fn(obj) else options.inverse(this)
 
 Template.docList.documents = ->
   Documents.find()
@@ -19,12 +21,13 @@ Template.docItem.events =
     e.preventDefault()
     Session.set("document", @_id)
 
-Template.editor.title = ->
-  id = Session.get("document")
-  Documents.findOne(id)?.title
+Template.docTitle.title = ->
+  Documents.findOne(@substring(0))?.title
 
 Template.editor.docid = ->
-  Session.get("document")
+  id = Session.get("document")
+  # Can't stay in a document if someone deletes it!
+  return if Documents.findOne(id) then id else `undefined`
 
 Template.editor.events =
   "keydown input": (e) ->
@@ -40,3 +43,9 @@ Template.editor.events =
     id = Session.get("document")
     Documents.remove(id)
     Session.set("document", null)
+
+Template.editor.config = ->
+  (ace) ->
+    # Set some reasonable options on the editor
+    ace.setShowPrintMargin(false)
+    ace.getSession().setUseWrapMode(true)

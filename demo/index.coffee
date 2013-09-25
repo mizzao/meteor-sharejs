@@ -1,1 +1,1 @@
-this.Documents = new Meteor.Collection("docs");
+this.Documents = new Meteor.Collection("documents");
