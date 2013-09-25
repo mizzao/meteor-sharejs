@@ -46,7 +46,9 @@ Template.foo.config = ->
 
 ## Persistence
 
-To use Redis to persist the documents (so that you don't use them every time Meteor restarts), fire up a Redis instance and put the following in your settings file. Make sure to run meteor with the settings: `meteor --settings yoursettings.json`.
+By default, the documents and edit operations will be persisted in Meteor's Mongo database.
+
+To use Redis to persist the documents, fire up a Redis instance and put the following in your settings file. Make sure to run meteor with the settings: `meteor --settings yoursettings.json`.
 
 ```js
 "sharejs": {
@@ -60,12 +62,13 @@ To use Redis to persist the documents (so that you don't use them every time Met
 }
 ```
 
-ShareJS 0.7.0+ will apparently support mongo-backed documents, but we're using Redis for now because it's stable.
+You can also use `db.type` of `none` to have all documents and operations in memory.
 
 ## Notes
 
+- When using the default mongo driver, you must not use collections called `docs` or `ops`. [These are used by ShareJS](https://github.com/share/ShareJS/blob/v0.6.2/src/server/db/mongo.coffee).
 - There's currently no security on this; ShareJS is agnostic to the Meteor users. The document ids are used for access.
-- It's best to create a `Meteor.Collection` for your documents which generates good unique ids to connect to ShareJS with. Use these to render the templates above. See the documents demo source for examples.
+- It's best to create a `Meteor.Collection` for your documents which generates good unique ids to connect to ShareJS with. Use these to render the templates above. See the [documents demo](https://github.com/mizzao/meteor-documents-demo) for examples.
 - Importing ace dependencies is somewhat unsatisfactory. Waiting for improvements to Meteor package management system.
 - We should integrate ShareJS auth with Meteor accounts, but these randomly generated ids are safe for most use cases.
 

@@ -26,15 +26,7 @@ switch options.db.type
     # Wait until we're connected to pass this to ShareJS
     future = new Future
     connection._withDb (db) -> future.return(db)
-    client = future.wait()
-    options.db.client = client
-
-#    oldOpen = client::open
-#    client.open = ->
-#      console.log "wtf"
-#      return oldOpen.apply(this, arguments)
-#
-#    console.log client.open
+    options.db.client = future.wait()
 
     Meteor._debug logPrefix, "Using Meteor's mongo for persistence."
 
