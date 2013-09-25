@@ -9,7 +9,7 @@
 <template name="main">
     <div class="container full-height">
         <div class="row upper">
-            <div class="span3">
+            <div class="span3 full-height">
                 {{> docList}}
             </div>
             <div class="span9 editor-container full-height">
@@ -18,9 +18,7 @@
         </div>
         <div class="row footer">
             <div class="span3">
-                <h3>
-                    <a href="https://github.com/mizzao/meteor-documents-demo" target="_blank">Get the source</a>
-                </h3>
+                <a class="btn btn-large btn-info" href="https://github.com/mizzao/meteor-documents-demo" target="_blank">Get the source</a>
             </div>
             <div class="span9">
                 <h3>Edit from multiple browsers for maximum wow!</h3>
@@ -48,8 +46,8 @@
 
 <template name="editor">
     {{#withif docid}}
-        {{> docTitle this}}
-        {{sharejsAce this callback=config id="editor"}}
+        {{> docTitle}}
+        {{sharejsAce docid callback=config id="editor"}}
     {{/withif}}
 </template>
 

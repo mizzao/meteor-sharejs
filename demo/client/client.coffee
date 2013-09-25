@@ -1,5 +1,4 @@
 Handlebars.registerHelper "withif", (obj, options) ->
-  console.log obj
   if obj then options.fn(obj) else options.inverse(this)
 
 Template.docList.documents = ->
@@ -14,7 +13,7 @@ Template.docList.events =
       Session.set("document", id)
 
 Template.docItem.current = ->
-  @_id is Session.get("document")
+  Session.equals("document", @_id)
 
 Template.docItem.events =
   "click a": (e) ->
@@ -22,12 +21,11 @@ Template.docItem.events =
     Session.set("document", @_id)
 
 Template.docTitle.title = ->
-  Documents.findOne(@substring(0))?.title
+  # Strange bug https://github.com/meteor/meteor/issues/1447
+  Documents.findOne(@substring 0)?.title
 
 Template.editor.docid = ->
-  id = Session.get("document")
-  # Can't stay in a document if someone deletes it!
-  return if Documents.findOne(id) then id else `undefined`
+  Session.get("document")
 
 Template.editor.events =
   "keydown input": (e) ->
@@ -39,10 +37,11 @@ Template.editor.events =
     Documents.update id,
       title: e.target.value
 
-  "click button": ->
+  "click button": (e) ->
+    e.preventDefault()
     id = Session.get("document")
-    Documents.remove(id)
     Session.set("document", null)
+    Meteor.call "deleteDocument", id
 
 Template.editor.config = ->
   (ace) ->
