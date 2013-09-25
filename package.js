@@ -51,4 +51,7 @@ Package.on_use(function (api) {
     api.add_files([
         'sharejs-server.coffee'
     ], 'server');
+
+    // Export the ShareJS interface
+    api.export('ShareJS', 'server');
 });

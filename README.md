@@ -64,6 +64,10 @@ To use Redis to persist the documents, fire up a Redis instance and put the foll
 
 You can also use `db.type` of `none` to have all documents and operations in memory.
 
+## Advanced
+
+You can access the [ShareJS Server API](https://github.com/share/ShareJS/wiki/Server-api) at `ShareJS.model`. For example, you may want to delete documents ops when the document is deleted in your app. See the demo for an example.
+
 ## Notes
 
 - When using the default mongo driver, you must not use collections called `docs` or `ops`. [These are used by ShareJS](https://github.com/share/ShareJS/blob/v0.6.2/src/server/db/mongo.coffee).
