@@ -3,8 +3,15 @@
 </head>
 
 <body>
+    {{> forkme}}
     {{> main}}
 </body>
+
+<template name="forkme">
+    <a href="https://github.com/mizzao/meteor-documents-demo">
+        <img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub">
+    </a>
+</template>
 
 <template name="main">
     <div class="container full-height">
@@ -17,9 +24,7 @@
             </div>
         </div>
         <div class="row footer">
-            <div class="span3">
-                <a class="btn btn-large btn-info" href="https://github.com/mizzao/meteor-documents-demo" target="_blank">Get the source</a>
-            </div>
+            <div class="span3">{{! placeholder}}</div>
             <div class="span9">
                 <h3>Edit from multiple browsers for maximum wow!</h3>
             </div>
