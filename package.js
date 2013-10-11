@@ -4,7 +4,7 @@ Package.describe({
 
 Npm.depends({
     share: "0.6.2",
-    mongodb: "1.3.17" // Current as of 0.6.5.1
+    mongodb: "1.3.19" // Current as of 0.6.6
     /*
         Uncomment these if you want to use redis.
         However, Mongo should be enough for most use cases.

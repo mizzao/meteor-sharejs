@@ -13,10 +13,11 @@ ShareJS = ShareJS || {}
 options = _.extend {
   staticPath: null # Meteor is serving up this application
   # rest: null # disable REST interface?
+  db: {
+    # Default option is Mongo because Meteor provides it
+    type: 'mongo'
+  }
 }, Meteor.settings.sharejs?.options
-
-# Default option is Mongo because Meteor provides it
-options.db.type ?= 'mongo'
 
 switch options.db.type
   when 'mongo'
