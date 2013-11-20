@@ -4,7 +4,7 @@ Package.describe({
 
 Npm.depends({
     share: "0.6.2",
-    mongodb: "1.3.19" // Current as of 0.6.6
+    mongodb: "1.3.17" // Current as of 0.6.5.1
     /*
         Uncomment these if you want to use redis.
         However, Mongo should be enough for most use cases.
@@ -13,6 +13,15 @@ Npm.depends({
     */
 //    hiredis: '0.1.15', // See also https://github.com/stevemanuel/meteor-redis
 //    redis: '0.8.4'
+});
+
+Package._transitional_registerBuildPlugin({
+    name: "downloadAce",
+    use: [],
+    sources: [
+        'download-ace.js'
+    ],
+    npmDependencies: {}
 });
 
 var asAsset = {isAsset: true};
