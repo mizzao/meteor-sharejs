@@ -53,6 +53,14 @@ switch options.db.type
   else
     Meteor._debug logPrefix, "using unsupported db type " + options.db.type + ", falling back to in-memory."
 
+# TODO: implement auth for redis
+if options.db.type is "mongo" and options.user_accounts_auth?
+  options = _.extend(options, 
+  {
+    auth: (agent, action) -> 
+      @MeteorShareJsUserAccountsAuthHandler(agent, action, options.user_accounts_auth, options.db.client, options.db.type)
+  })
+
 # Declare the path that ShareJS uses to Meteor
 RoutePolicy.declare('/connect', 'network');
 
