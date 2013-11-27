@@ -115,7 +115,7 @@ Your settings file should look like the following:
 
 ### Client-side settings
 
-* `public`: this enables client side sending of `Meteor.userId()` as sharejs authentication token.
+* `public.sharejs.user_accounts_auth`: this enables client side sending of `Meteor.userId()` as sharejs authentication token.
 
 ### Server-side settings
 
@@ -127,9 +127,9 @@ All authorize and authenticate settings are under their respective categories. P
 The sub-categories for both operate similarly.
 
 * `criteria`: logic for allowing/rejecting authorization.
-* `collection`: database collection to fetch the document/user metadata from.
-* `token_validations`: contains the boolean logic and supports the keywords `is_equal`, `isnt_equal`, `is_in_array` and `isnt_in_array`. Both `or` and `and` logical operators can be used, provided at any one level of JSON, there is only one or none of them.
-* `apply_on`: you can select operations from [here](https://github.com/share/ShareJS/wiki/User-access-control#actions) `Type` column except `connect` which is reserved for authentication.
+* `criteria.collection`: database collection to fetch the document/user metadata from.
+* `criteria.token_validations`: contains the boolean logic and supports the keywords `is_equal`, `isnt_equal`, `is_in_array` and `isnt_in_array`. Both `or` and `and` logical operators can be used, provided at any one level of JSON, there is only one or none of them.
+* `criteria.apply_on`: you can select operations from [here](https://github.com/share/ShareJS/wiki/User-access-control#actions) `Type` column except `connect` which is reserved for authentication.
 
 ### Validations
 
@@ -144,7 +144,7 @@ All validations are run against the token. The client-side of sharejs auth would
 }
 ```
 
-### Authorization
+### Authentication
 
 In my view, the presence of the user in the collection is enough for letting them connect to sharejs. However, criteria such as the following in above example is left as a placeholder for you to decide.
 
