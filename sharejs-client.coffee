@@ -36,7 +36,7 @@ Template._sharejsText.rendered = ->
   }
 
   # Add auth if enabled
-  if Meteor.settings.public?.sharejs?.user_accounts_auth?
+  if Meteor.settings?.public?.sharejs?.user_accounts_auth?
     options = _.extend(options, 
       {
         authentication: Meteor.userId() or ""
@@ -68,7 +68,7 @@ Template._sharejsAce.rendered = ->
   }
 
   # Add auth if enabled
-  if Meteor.settings.public?.sharejs?.user_accounts_auth?
+  if Meteor.settings?.public?.sharejs?.user_accounts_auth?
     options = _.extend(options, 
       {
         authentication: Meteor.userId() or ""
