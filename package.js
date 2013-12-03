@@ -16,15 +16,13 @@ Npm.depends({
 });
 
 Package._transitional_registerBuildPlugin({
-    name: "downloadAce",
-    use: [],
+    name: "fetcher",
+    use: [ 'http' ],
     sources: [
-        'download-ace.js'
+        'fetcher.js'
     ],
     npmDependencies: {}
 });
-
-var asAsset = {isAsset: true};
 
 Package.on_use(function (api) {
     api.use('coffeescript');
@@ -39,16 +37,13 @@ Package.on_use(function (api) {
         '.npm/package/node_modules/share/webclient/share.js'
     ], 'client');
 
-    // Used to keep ace editor in lib, but only if we can't load it from CDN.
-    // api.add_files('lib/ace.js', 'client', asAsset);
+    // Download the ace files from CDN for the client
+    api.add_files('ace.fetch.json', 'client');
 
-    /*
-        These files are loaded in <head> scripts after Ace is loaded via CDN
-        You can push them over directly without the isAsset line, but make sure you load Ace first.
-     */
+    // Add the ShareJS connectors
     // TODO: a really smart package would not push both of these to the client depending on use case
-    api.add_files('.npm/package/node_modules/share/webclient/ace.js', 'client', asAsset);
-    api.add_files('.npm/package/node_modules/share/webclient/textarea.js', 'client', asAsset);
+    api.add_files('.npm/package/node_modules/share/webclient/ace.js', 'client');
+    api.add_files('.npm/package/node_modules/share/webclient/textarea.js', 'client');
 
     // Our files
     api.add_files([
