@@ -1,3 +1,7 @@
-{
-    "ace.js": "https://raw.github.com/ajaxorg/ace-builds/3bded0bc1b5b51f74afd2f8dafb768ab8f35b00b/src-min/ace.js"
-}
+[
+    {
+        "file": "ace.js",
+        "url": "https://raw.github.com/ajaxorg/ace-builds/3bded0bc1b5b51f74afd2f8dafb768ab8f35b00b/src-min/ace.js",
+        "bare": true
+    }
+]

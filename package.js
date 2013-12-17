@@ -15,21 +15,13 @@ Npm.depends({
 //    redis: '0.8.4'
 });
 
-Package._transitional_registerBuildPlugin({
-    name: "fetcher",
-    use: [ 'http' ],
-    sources: [
-        'fetcher.js'
-    ],
-    npmDependencies: {}
-});
-
 Package.on_use(function (api) {
     api.use('coffeescript');
     api.use(['handlebars', 'templating'], 'client');
 
     api.use('underscore', 'server');
     api.use(['mongo-livedata', 'routepolicy', 'webapp'], 'server');
+    api.use('build-fetcher');
 
     // ShareJS script files
     api.add_files([
