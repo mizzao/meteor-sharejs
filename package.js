@@ -4,7 +4,14 @@ Package.describe({
 
 Npm.depends({
     share: "0.6.2",
-    mongodb: "1.3.17" // Current as of 0.6.5.1
+
+    /*
+        Approximate version used in 0.7.0, but we just use MongoInternals.
+        See also https://github.com/meteor/meteor/blob/devel/packages/mongo-livedata/package.js
+        This is necessary for ShareJS to resolve the mongodb dependency and not complain.
+    */
+    mongodb: "1.3.19"
+
     /*
         Uncomment these if you want to use redis.
         However, Mongo should be enough for most use cases.
