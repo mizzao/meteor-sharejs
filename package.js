@@ -52,6 +52,7 @@ Package.on_use(function (api) {
 
     // Server files
     api.add_files([
+        'lib/sharejs-server-auth-helpers.coffee',
         'sharejs-server.coffee'
     ], 'server');
 

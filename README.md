@@ -64,6 +64,96 @@ To use Redis to persist the documents, fire up a Redis instance and put the foll
 
 You can also use `db.type` of `none` to have all documents and operations in memory.
 
+## Meteor User-Accounts Integration
+
+In case you are using Mongo to mirror the internal sharejs DB with an external Meteor collection as in the user-accounts demo app (find it [here](https://github.com/kbdaitch/meteor-documents-demo) deployed on [meteor](http://documents-users.meteor.com)), both, authorization and authentication, are available using sharejs auth mechanism.
+
+The use of this feature becomes effective if you store addional metadata such as owners and invites in the document collection like [here](https://github.com/kbdaitch/meteor-documents-demo/blob/master/client/client.coffee#L22) in the demo app.
+
+Your settings file should look like the following:
+
+```js
+{
+  "public": {
+    "sharejs": {
+      "user_accounts_auth": true
+    }
+  },
+  "sharejs": {
+    "options": {
+      "user_accounts_auth": {
+        "authorize": {
+          "criteria": {
+            "collection": "documents",
+            "token_validations": {
+              "or": {
+                "invitedUsers": "is_in_array",
+                "userId": "is_equal"
+              }
+            },
+            "apply_on": [
+              "read",
+              "update",
+              "create",
+              "delete"
+            ]
+          }
+        },
+        "authenticate": {
+          "criteria": {
+            "collection": "users",
+            "token_validations": {
+              "_id": "is_equal"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Client-side settings
+
+* `public.sharejs.user_accounts_auth`: this enables client side sending of `Meteor.userId()` as sharejs authentication token.
+
+### Server-side settings
+
+All authorize and authenticate settings are under their respective categories. Please note that both of them are completely optional, however once present, they must have at least `criteria.collection`.
+
+* `sharejs.options.user_accounts_auth.authorize`
+* `sharejs.options.user_accounts_auth.authenticate`
+
+The sub-categories for both operate similarly.
+
+* `criteria`: logic for allowing/rejecting authorization.
+* `criteria.collection`: database collection to fetch the document/user metadata from.
+* `criteria.token_validations`: contains the boolean logic and supports the keywords `is_equal`, `isnt_equal`, `is_in_array` and `isnt_in_array`. Both `or` and `and` logical operators can be used, provided at any one level of JSON, there is only one or none of them.
+* `criteria.apply_on`: you can select operations from [here](https://github.com/share/ShareJS/wiki/User-access-control#actions) `Type` column except `connect` which is reserved for authentication.
+
+### Validations
+
+All validations are run against the token. The client-side of sharejs auth would use `Meteor.userId()` for the token. So, for a returned document from database, the following will check for equality of `userId` and token or presence of token in `invitedUsers`.
+
+```js
+"token_validations": {
+  "or": {
+    "userId": "is_equal",
+    "invitedUsers": "is_in_array"
+  }
+}
+```
+
+### Authentication
+
+In my view, the presence of the user in the collection is enough for letting them connect to sharejs. However, criteria such as the following in above example is left as a placeholder for you to decide.
+
+```js
+"token_validations": {
+  "_id": "is_equal"
+}
+```
+
 ## Advanced
 
 You can access the [ShareJS Server API](https://github.com/share/ShareJS/wiki/Server-api) at `ShareJS.model`. For example, you may want to delete documents ops when the document is deleted in your app. See the demo for an example.
