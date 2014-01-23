@@ -31,7 +31,7 @@ Template._sharejsText.rendered = ->
 
   @_elem = document.getElementById(@data.id);
 
-  sharejs.open @data.docid, 'text', 'http://' + host + '/channel', (error, doc) =>
+  sharejs.open @data.docid, 'text', '//' + host + '/channel', (error, doc) =>
     if error
       @_elem.disabled = true
       console.log error
@@ -52,7 +52,7 @@ Template._sharejsAce.rendered = ->
   @_editor = ace.edit(@data.id)
   @_editor.setReadOnly(true); # Disable editing until share is connected
 
-  sharejs.open @data.docid, 'text', 'http://' + host + '/channel', (error, doc) =>
+  sharejs.open @data.docid, 'text', '//' + host + '/channel', (error, doc) =>
     if error
       console.log error
     else
