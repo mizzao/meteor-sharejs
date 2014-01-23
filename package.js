@@ -4,22 +4,12 @@ Package.describe({
 
 Npm.depends({
     share: "0.6.2",
-
     /*
         Approximate version used in 0.7.0, but we just use MongoInternals.
         See also https://github.com/meteor/meteor/blob/devel/packages/mongo-livedata/package.js
         This is necessary for ShareJS to resolve the mongodb dependency and not complain.
     */
     mongodb: "1.3.19"
-
-    /*
-        Uncomment these if you want to use redis.
-        However, Mongo should be enough for most use cases.
-        Fie on the Meteor developers who haven't implemented package options:
-        https://github.com/meteor/meteor/issues/1292
-    */
-//    hiredis: '0.1.15', // See also https://github.com/stevemanuel/meteor-redis
-//    redis: '0.8.4'
 });
 
 Package.on_use(function (api) {

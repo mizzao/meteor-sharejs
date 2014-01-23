@@ -28,7 +28,8 @@ Use this helper to get an Ace editor. Make sure you specify a size (via CSS) on 
 
 The templates will clean themselves up when re-rendered (i.e., you have several documents and docid changes.)
 
-### Configuration
+## Client Configuration
+
 
 For the Ace editor, define a custom callback in the options hash and pass it in to configure the editor after it is rendered.
 ```
@@ -44,27 +45,17 @@ Template.foo.config = ->
     editor.getSession().setUseWrapMode(true)
 ```
 
-## Persistence
+## Server Configuration
 
-By default, the documents and edit operations will be persisted in Meteor's Mongo database. Mongo is the recommended usage as you don't need a separate database and user integration is supported.
+See this [example config file](settings-example.json) for the various settings that you can use.
 
-To use Redis to persist the documents, fire up a Redis instance and put the following in your settings file. Make sure to run meteor with the settings: `meteor --settings yoursettings.json`.
+### Persistence
 
-```js
-"sharejs": {
-    "options": {
-        "db": {
-            "type": "redis"
-            "host": "127.0.0.1" // optional
-            "port": 6379 // optional
-        }
-    }
-}
-```
+By default, the documents and edit operations will be persisted in Meteor's Mongo database. Mongo is the recommended usage as you don't need a separate database and user integration is supported. `"opsCollectionPerDoc": false` can be useful to set if you don't want a separate ops collection for each document.
 
 You can also use `db.type` of `none` to have all documents and operations in memory.
 
-## Meteor User-Accounts Integration
+### Meteor User-Accounts Integration
 
 In case you are using Mongo to mirror the internal sharejs DB with an external Meteor collection as in the user-accounts demo app (find it [here](https://github.com/kbdaitch/meteor-documents-demo) deployed on [meteor](http://documents-users.meteor.com)), both authorization and authentication are available using the [ShareJS auth mechanism](https://github.com/share/ShareJS/wiki/User-access-control).
 
@@ -103,8 +94,6 @@ Your settings file should look like the following:
   }
 }
 ```
-
-### Server-side settings
 
 All authorize and authenticate settings are under their respective categories. Please note that both of them are completely optional, however once present, they must have at least a field called `collection`.
 

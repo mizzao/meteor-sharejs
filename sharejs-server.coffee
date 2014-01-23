@@ -1,13 +1,11 @@
 # Creates a (persistent) ShareJS server
-# Roughly copied from https://github.com/share/ShareJS/wiki/Getting-started
-
+# Based on https://github.com/share/ShareJS/wiki/Getting-started
 Future = Npm.require('fibers/future')
 
 logPrefix = "ShareJS:"
 
 ShareJS = ShareJS || {}
-
-# See docs for options. Uses mongo by default to enable persistence, but redis also supported.
+# See docs for options. Uses mongo by default to enable persistence.
 
 # Using special options from https://github.com/share/ShareJS/blob/master/src/server/index.coffee
 options = _.extend {
@@ -37,30 +35,11 @@ switch options.db.type
 
     if options.accounts_auth?
       options.auth = new MeteorAccountsAuthHandler(options.accounts_auth, options.db.client).handle
-
-  when 'redis'
-    ###
-      ShareJS 0.6.2 redis support
-      https://github.com/share/ShareJS/blob/v0.6.2/src/server/db/redis.coffee
-    ###
-    try
-      redis = Npm.require('redis')
-
-      client = redis.createClient(options.db.port, options.db.host) # (port, host, options): defaults to 6379, 127.0.0.1
-      client.on "error", (err) ->
-        Meteor._debug logPrefix, "Error connecting to redis: " + err
-      options.db.client = client
-
-      Meteor._debug logPrefix, "Redis persistence is enabled."
-    catch e
-      Meteor._debug logPrefix, "Error loading redis module: " + e
-
-    # TODO: implement auth for redis
   else
     Meteor._debug logPrefix, "using unsupported db type " + options.db.type + ", falling back to in-memory."
 
 # Declare the path that ShareJS uses to Meteor
-RoutePolicy.declare('/connect', 'network');
+RoutePolicy.declare('/channel', 'network');
 
 # Attach the sharejs REST and Socket.io interfaces as middleware to the meteor connect server
 sharejs = Npm.require('share').server
