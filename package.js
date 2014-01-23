@@ -23,11 +23,10 @@ Npm.depends({
 });
 
 Package.on_use(function (api) {
-    api.use('coffeescript');
+    api.use(['coffeescript', 'underscore']);
     api.use(['handlebars', 'templating'], 'client');
-
-    api.use('underscore', 'server');
     api.use(['mongo-livedata', 'routepolicy', 'webapp'], 'server');
+
     api.use('build-fetcher');
 
     // ShareJS script files
@@ -52,6 +51,7 @@ Package.on_use(function (api) {
 
     // Server files
     api.add_files([
+        'sharejs-meteor-auth.coffee',
         'sharejs-server.coffee'
     ], 'server');
 

@@ -34,6 +34,10 @@ switch options.db.type
     options.db.client = future.wait()
 
     Meteor._debug logPrefix, "Using Meteor's mongo for persistence."
+
+    if options.accounts_auth?
+      options.auth = new MeteorAccountsAuthHandler(options.accounts_auth, options.db.client).handle
+
   when 'redis'
     ###
       ShareJS 0.6.2 redis support
@@ -50,6 +54,8 @@ switch options.db.type
       Meteor._debug logPrefix, "Redis persistence is enabled."
     catch e
       Meteor._debug logPrefix, "Error loading redis module: " + e
+
+    # TODO: implement auth for redis
   else
     Meteor._debug logPrefix, "using unsupported db type " + options.db.type + ", falling back to in-memory."
 

@@ -1,5 +1,6 @@
 ## vNEXT
 
+* Preliminary support for user-accounts integration. #6
 * More robust connection on both http and https services.
 
 ## v0.3.2
