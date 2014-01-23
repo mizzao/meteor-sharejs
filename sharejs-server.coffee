@@ -39,11 +39,10 @@ switch options.db.type
     Meteor._debug logPrefix, "using unsupported db type " + options.db.type + ", falling back to in-memory."
 
 # Declare the path that ShareJS uses to Meteor
-RoutePolicy.declare('/channel', 'network');
+RoutePolicy.declare('/channel/', 'network');
 
-# Attach the sharejs REST and Socket.io interfaces as middleware to the meteor connect server
-sharejs = Npm.require('share').server
-sharejs.attach(WebApp.connectHandlers, options);
+# Attach the sharejs REST and bcsocket interfaces as middleware to the meteor connect server
+Npm.require('share').server.attach(WebApp.connectHandlers, options);
 
 ###
   ShareJS attaches the server API to a weird place. Oh well...
