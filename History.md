@@ -3,6 +3,7 @@
 * Preliminary support for user-accounts integration. #6
 * More robust connection on both http and https services.
 * Removed any references to Redis. It's much better to use Mongo with Meteor!
+* Fixed a bug that prevented editing with IE.
 
 ## v0.3.2
 

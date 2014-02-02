@@ -33,17 +33,18 @@ Template._sharejsText.rendered = ->
   # close any previous docs if attached to rerender
   cleanup.call(@)
 
-  @_elem = document.getElementById(@data.id);
+  @_elem = document.getElementById(@data.id)
+  @_elem.disabled = true
 
   sharejs.open @data.docid, 'text', getOptions(), (error, doc) =>
     if error
-      @_elem.disabled = true
       console.log error
     else
       # Don't attach duplicate editors if re-render happens too fast
-      return unless @_editor? and doc.name is @data.docid
-      @_elem.disabled = false
+      return unless @_elem? and doc.name is @data.docid
+
       doc.attach_textarea(@_elem)
+      @_elem.disabled = false
       @_doc = doc
 
 Template._sharejsText.destroyed = ->
@@ -64,7 +65,7 @@ Template._sharejsAce.rendered = ->
       return unless @_editor? and doc.name is @data.docid
 
       doc.attach_ace(@_editor)
-      @_editor.setReadOnly(false);
+      @_editor.setReadOnly(false)
       @_doc = doc
 
   # Configure the editor as requested
