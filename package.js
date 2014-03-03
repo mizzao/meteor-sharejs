@@ -17,16 +17,14 @@ Package.on_use(function (api) {
     api.use(['handlebars', 'templating'], 'client');
     api.use(['mongo-livedata', 'routepolicy', 'webapp'], 'server');
 
-    api.use('build-fetcher');
-
     // ShareJS script files
     api.add_files([
         '.npm/package/node_modules/share/node_modules/browserchannel/dist/bcsocket.js',
         '.npm/package/node_modules/share/webclient/share.js'
     ], 'client');
 
-    // Download the ace files from CDN for the client
-    api.add_files('ace.fetch.json', 'client');
+    // Ace editor for the client
+    api.add_files('ace-builds/src-min/ace.js', 'client', { bare: true });
 
     // Add the ShareJS connectors
     // TODO: a really smart package would not push both of these to the client depending on use case
