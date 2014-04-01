@@ -50,10 +50,10 @@
 </template>
 
 <template name="editor">
-    {{#withif docid}}
-        {{> docTitle}}
-        {{sharejsAce docid callback=config id="editor"}}
-    {{/withif}}
+    {{#with docid}}
+        {{> docTitle docid=docid}}
+        {{> sharejsAce docid=docid callback=config id="editor"}}
+    {{/with}}
 </template>
 
 <template name="docTitle">
