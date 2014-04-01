@@ -3,7 +3,7 @@ meteor-sharejs
 
 Meteor smart package for transparently adding ShareJS editors to an app. Includes the [Ace editor](http://ace.c9.io/).
 
-Demo app: http://documents.meteor.com (source: https://github.com/mizzao/meteor-documents-demo)
+Demo app: http://documents.meteor.com ([source](demo))
 
 ## Install
 
@@ -137,7 +137,7 @@ You can access the [ShareJS Server API](https://github.com/share/ShareJS/wiki/Se
 
 - When using the default mongo driver, you must not use collections called `docs` or `ops`. [These are used by ShareJS](https://github.com/share/ShareJS/blob/v0.6.2/src/server/db/mongo.coffee).
 - When not using accounts integration, ShareJS is agnostic to the Meteor users, and doesn't keep track of who did what op. The document ids are used for access.
-- It's best to create a `Meteor.Collection` for your documents which generates good unique ids to connect to ShareJS with. Use these to render the templates above. See the [documents demo](https://github.com/mizzao/meteor-documents-demo) for examples.
+- It's best to create a `Meteor.Collection` for your documents which generates good unique ids to connect to ShareJS with. Use these to render the templates above. See the [demo](demo) for examples.
 - Importing ace dependencies is somewhat unsatisfactory. Waiting for improvements to Meteor package management system.
 
 Please submit pull requests for better features and cooperation!

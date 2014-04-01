@@ -1,0 +1,20 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "sharejs": {}
+    },
+    "packages": {
+      "sharejs": {
+        "git": "https://github.com/mizzao/meteor-sharejs.git",
+        "tag": "v0.3.2",
+        "commit": "76a05326e98b9bade6ae6fef8696a3f916c7007f"
+      },
+      "build-fetcher": {
+        "git": "https://github.com/mizzao/meteor-build-fetcher.git",
+        "tag": "v0.1.0",
+        "commit": "e3813b1fc7f5c576e8e1fa4c51ae6f4687780a35"
+      }
+    }
+  }
+}
