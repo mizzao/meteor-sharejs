@@ -1,6 +1,3 @@
-Handlebars.registerHelper "withif", (obj, options) ->
-  if obj then options.fn(obj) else options.inverse(this)
-
 Template.docList.documents = ->
   Documents.find()
 
@@ -22,7 +19,7 @@ Template.docItem.events =
 
 Template.docTitle.title = ->
   # Strange bug https://github.com/meteor/meteor/issues/1447
-  Documents.findOne(@substring 0)?.title
+  Documents.findOne(@+"")?.title
 
 Template.editor.docid = ->
   Session.get("document")

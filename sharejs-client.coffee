@@ -1,19 +1,15 @@
-Handlebars.registerHelper "sharejsText", (docid, options) ->
-  id = options.hash.id || "sharejsTextEditor"
-  return new Handlebars.SafeString Template._sharejsText(id: id, docid: docid)
-
-aceConfigCallback = null
-
-Handlebars.registerHelper "sharejsAce", (docid, options) ->
-  id = options.hash.id || "sharejsAceEditor"
-  aceConfigCallback = options.hash.callback
-  return new Handlebars.SafeString Template._sharejsAce(id: id, docid: docid)
+UI.registerHelper "sharejsAce", (a, b) ->
+#  console.log a
+#  console.log b
+#  console.log this
+#  console.log UI.emboxValue(@docid)
+  Template._sharejsAce
 
 host = window.location.host
 
 getOptions = ->
   origin: '//' + host + '/channel'
-  authentication: Meteor.userId() or null
+  authentication: Meteor.userId?() or null # accounts-base may not be in the app
 
 cleanup = ->
   # Detach event listeners from the textarea, unless you want crazy shit happenin'
@@ -29,11 +25,11 @@ cleanup = ->
     @_doc.close()
     @_doc = null
 
-Template._sharejsText.rendered = ->
+Template.sharejsText.rendered = ->
   # close any previous docs if attached to rerender
   cleanup.call(@)
 
-  @_elem = document.getElementById(@data.id)
+  @_elem = document.getElementById(@data.id || "sharejsTextEditor")
   @_elem.disabled = true
 
   sharejs.open @data.docid, 'text', getOptions(), (error, doc) =>
@@ -47,14 +43,18 @@ Template._sharejsText.rendered = ->
       @_elem.disabled = false
       @_doc = doc
 
-Template._sharejsText.destroyed = ->
+Template.sharejsText.destroyed = ->
   cleanup.call(@)
+
+Template._sharejsAce.docid = ->
+  console.log @
+  @docid
 
 Template._sharejsAce.rendered = ->
   # close any previous docs if attached to rerender
   cleanup.call(@)
 
-  @_editor = ace.edit(@data.id)
+  @_editor = ace.edit(@data.id || "sharejsAceEditor")
   @_editor.setReadOnly(true); # Disable editing until share is connected
 
   sharejs.open @data.docid, 'text', getOptions(), (error, doc) =>
@@ -69,7 +69,7 @@ Template._sharejsAce.rendered = ->
       @_doc = doc
 
   # Configure the editor as requested
-  aceConfigCallback?(@_editor)
+  @data.callback?(@_editor)
 
 Template._sharejsAce.destroyed = ->
   cleanup.call(@)
