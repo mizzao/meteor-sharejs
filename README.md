@@ -18,12 +18,12 @@ No configuration necessary for anonymous document editing. If you want to integr
 Use this helper on the client to get a `textarea` with the specified `docid` (as an argument) and with a DOM id of "editor", for example:
 
 ```
-{{sharejsText docid id="editor"}}
+{{> sharejsText docid=docid id="editor"}}
 ```
 
 Use this helper to get an Ace editor. Make sure you specify a size (via CSS) on the #editor div or you won't see anything.
 ```
-{{sharejsAce docid id="editor"}}
+{{> sharejsAce docid=docid id="editor"}}
 ```
 
 The templates will clean themselves up when re-rendered (i.e., you have several documents and docid changes.)
