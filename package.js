@@ -34,13 +34,13 @@ Package.on_use(function (api) {
     // Our files
     api.add_files([
         'sharejs-templates.html',
-        'sharejs-client.coffee'
+        'sharejs-client.js'
     ], 'client');
 
     // Server files
     api.add_files([
         'sharejs-meteor-auth.coffee',
-        'sharejs-server.coffee'
+        'sharejs-server.js'
     ], 'server');
 
     // Export the ShareJS interface
