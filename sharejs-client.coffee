@@ -1,3 +1,10 @@
+UI.registerHelper "sharejsAce", (a, b) ->
+#  console.log a
+#  console.log b
+#  console.log this
+#  console.log UI.emboxValue(@docid)
+  Template._sharejsAce
+
 host = window.location.host
 
 getOptions = ->
@@ -39,12 +46,11 @@ Template.sharejsText.rendered = ->
 Template.sharejsText.destroyed = ->
   cleanup.call(@)
 
-Template.sharejsAce.docid = ->
+Template._sharejsAce.docid = ->
   console.log @
   @docid
 
-Template.sharejsAce.rendered = ->
-  console.log "rendered"
+Template._sharejsAce.rendered = ->
   # close any previous docs if attached to rerender
   cleanup.call(@)
 

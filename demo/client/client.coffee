@@ -19,7 +19,7 @@ Template.docItem.events =
 
 Template.docTitle.title = ->
   # Strange bug https://github.com/meteor/meteor/issues/1447
-  Documents.findOne(@docid)?.title
+  Documents.findOne(@+"")?.title
 
 Template.editor.docid = ->
   Session.get("document")

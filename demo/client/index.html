@@ -51,7 +51,7 @@
 
 <template name="editor">
     {{#with docid}}
-        {{> docTitle docid=docid}}
+        {{> docTitle docid}}
         {{> sharejsAce docid=docid callback=config id="editor"}}
     {{/with}}
 </template>
