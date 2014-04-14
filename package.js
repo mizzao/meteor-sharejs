@@ -5,11 +5,12 @@ Package.describe({
 Npm.depends({
     share: "0.6.2",
     /*
-        Approximate version used in 0.7.0, but we just use MongoInternals.
-        See also https://github.com/meteor/meteor/blob/devel/packages/mongo-livedata/package.js
+        Mongo version used in 0.8.0, but we just use MongoInternals.
+        Grabbed from https://github.com/meteor/meteor/blob/devel/packages/mongo-livedata/package.js
+        Update this whenever we target a new Meteor version.
         This is necessary for ShareJS to resolve the mongodb dependency and not complain.
     */
-    mongodb: "1.3.19"
+    mongodb: "1.4.1"
 });
 
 Package.on_use(function (api) {

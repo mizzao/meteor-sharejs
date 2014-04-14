@@ -1,9 +1,14 @@
-UI.registerHelper "sharejsAce", (a, b) ->
-#  console.log a
-#  console.log b
-#  console.log this
-#  console.log UI.emboxValue(@docid)
-  Template._sharejsAce
+# Hack the shit out of the Blaze Component API
+# until https://github.com/meteor/meteor/issues/2010 is resolved
+UI.registerHelper "sharejsAce", ->
+  UI.Component.extend
+    kind: "ShareJSAce",
+    render: -> Template._sharejsAce
+
+UI.registerHelper "sharejsText", ->
+  UI.Component.extend
+    kind: "ShareJSText",
+    render: -> Template._sharejsText
 
 host = window.location.host
 
@@ -12,23 +17,21 @@ getOptions = ->
   authentication: Meteor.userId?() or null # accounts-base may not be in the app
 
 cleanup = ->
+  console.log "cleaning up"
   # Detach event listeners from the textarea, unless you want crazy shit happenin'
-  if @_elem
+  if @_elem?
     @_elem.detach_share?()
     @_elem = null
   # Detach ace editor, if any
-  if @_editor
+  if @_editor?
     @_doc?.detach_ace?()
     @_editor = null
   # Close connection to the node server
-  if @_doc
+  if @_doc?
     @_doc.close()
     @_doc = null
 
-Template.sharejsText.rendered = ->
-  # close any previous docs if attached to rerender
-  cleanup.call(@)
-
+Template._sharejsText.rendered = ->
   @_elem = document.getElementById(@data.id || "sharejsTextEditor")
   @_elem.disabled = true
 
@@ -43,17 +46,9 @@ Template.sharejsText.rendered = ->
       @_elem.disabled = false
       @_doc = doc
 
-Template.sharejsText.destroyed = ->
-  cleanup.call(@)
-
-Template._sharejsAce.docid = ->
-  console.log @
-  @docid
+Template._sharejsText.destroyed = cleanup
 
 Template._sharejsAce.rendered = ->
-  # close any previous docs if attached to rerender
-  cleanup.call(@)
-
   @_editor = ace.edit(@data.id || "sharejsAceEditor")
   @_editor.setReadOnly(true); # Disable editing until share is connected
 
@@ -71,5 +66,4 @@ Template._sharejsAce.rendered = ->
   # Configure the editor as requested
   @data.callback?(@_editor)
 
-Template._sharejsAce.destroyed = ->
-  cleanup.call(@)
+Template._sharejsAce.destroyed = cleanup

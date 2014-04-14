@@ -5,11 +5,6 @@
     -moz-box-sizing: border-box
     -webkit-box-sizing: border-box
     box-sizing: border-box
-// Except inputs, which would be too small - http://stackoverflow.com/a/15495604/586086
-input
-    -moz-box-sizing: content-box
-    -webkit-box-sizing: content-box
-    box-sizing: content-box
 
 html, body, .full-height
     height: 100%
@@ -18,13 +13,10 @@ body
     padding: 20px 50px 0px
 
 .row.upper
-    position: absolute
-    top: 0
-    bottom: 60px
+    height: 85%
 
 .row.footer
-    position: absolute
-    bottom: 0
+    height: 15%
 
 #list
     overflow: auto
@@ -37,7 +29,6 @@ body
     position: absolute
     left: 0
     right: 0
-    top: 50px
+    top: 60px
     bottom: 0
     box-shadow 0px 0px 5px 5px rgba(0, 0, 0, 0.4);
-

@@ -2,6 +2,7 @@
   "packages": {
     "sharejs": {
       "path": ".."
-    }
+    },
+    "bootstrap-3": {}
   }
 }

@@ -1,3 +1,7 @@
+## v0.5.0
+
+* Hacked up support for Meteor 0.8.0 (Blaze). Expect changes as Meteor's UI API improves.
+
 ## v0.4.0
 
 * Preliminary support for user-accounts integration. #6

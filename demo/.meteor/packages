@@ -7,6 +7,6 @@ autopublish
 insecure
 standard-app-packages
 coffeescript
-bootstrap
 stylus
 sharejs
+bootstrap-3
