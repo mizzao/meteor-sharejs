@@ -17,7 +17,7 @@ getOptions = ->
   authentication: Meteor.userId?() or null # accounts-base may not be in the app
 
 cleanup = ->
-  console.log "cleaning up"
+  # console.log "cleaning up"
   # Detach event listeners from the textarea, unless you want crazy shit happenin'
   if @_elem?
     @_elem.detach_share?()
