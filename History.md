@@ -1,3 +1,7 @@
+## v0.5.1
+
+* Fixed an issue with the Ace submodule repository path.
+
 ## v0.5.0
 
 * Hacked up support for Meteor 0.8.0 (Blaze). Expect changes as Meteor's UI API improves.
