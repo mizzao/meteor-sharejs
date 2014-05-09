@@ -2,8 +2,6 @@
 # Based on https://github.com/share/ShareJS/wiki/Getting-started
 Future = Npm.require('fibers/future')
 
-logPrefix = "ShareJS:"
-
 ShareJS = ShareJS || {}
 # See docs for options. Uses mongo by default to enable persistence.
 
@@ -31,12 +29,10 @@ switch options.db.type
     connection._withDb (db) -> future.return(db)
     options.db.client = future.wait()
 
-    Meteor._debug logPrefix, "Using Meteor's mongo for persistence."
-
     if options.accounts_auth?
       options.auth = new MeteorAccountsAuthHandler(options.accounts_auth, options.db.client).handle
   else
-    Meteor._debug logPrefix, "using unsupported db type " + options.db.type + ", falling back to in-memory."
+    Meteor._debug "ShareJS: using unsupported db type " + options.db.type + ", falling back to in-memory."
 
 # Declare the path that ShareJS uses to Meteor
 RoutePolicy.declare('/channel/', 'network');
