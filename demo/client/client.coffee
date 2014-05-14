@@ -43,5 +43,6 @@ Template.editor.events =
 Template.editor.config = ->
   (ace) ->
     # Set some reasonable options on the editor
+    ace.setTheme('ace/theme/monokai')
     ace.setShowPrintMargin(false)
     ace.getSession().setUseWrapMode(true)

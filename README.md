@@ -31,15 +31,19 @@ The templates will clean themselves up when re-rendered (i.e., you have several 
 ## Client Configuration
 
 For the Ace editor, define a custom callback in the options hash and pass it in to configure the editor after it is rendered.
+
 ```
 {{> sharejsAce docid=document callback=config id="editor"}}
 ```
 
- Note that the helper has to return a function inside of a function:
+All [standard Ace themes and extensions](https://github.com/ajaxorg/ace-builds/tree/master/src) are supported. Note that the helper has to return a function inside of a function:
+
 ```
 Template.foo.config = ->
   (editor) ->
     # Set some reasonable options on the editor
+    editor.setTheme('ace/theme/monokai')
+    editor.getSession().setMode('ace/mode/javascript')
     editor.setShowPrintMargin(false)
     editor.getSession().setUseWrapMode(true)
 ```

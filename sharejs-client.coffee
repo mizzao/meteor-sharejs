@@ -1,3 +1,6 @@
+# Set asset path in Ace config
+require('ace/config').set('basePath', '/packages/sharejs/ace-builds/src')
+
 # Hack the shit out of the Blaze Component API
 # until https://github.com/meteor/meteor/issues/2010 is resolved
 UI.registerHelper "sharejsAce", ->

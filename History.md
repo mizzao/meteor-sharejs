@@ -1,3 +1,7 @@
+## v0.5.2
+
+* Added built-in support for loading Ace editor extensions and themes.
+
 ## v0.5.1
 
 * Fixed an issue with the Ace submodule repository path.
