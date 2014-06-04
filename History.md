@@ -16,6 +16,7 @@
     ```
 
 * Created a helper function to create a document on the server, and added a couple of tests (implicitly testing the rest of the stack.)
+* Store the Meteor `userId` in the ShareJS ops collection through some egregious monkey-patching. Hopefully the modularity of ShareJS 0.7 will make this easier; to make sure this happens, you should pitch in at https://github.com/share/ShareJS/issues/286.
 
 ## v0.5.2
 

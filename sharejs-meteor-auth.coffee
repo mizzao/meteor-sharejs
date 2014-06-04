@@ -47,6 +47,30 @@ runValidations = (currentOp, validations, doc, token) ->
             result = LogicalOps[currentOp](result, token is not doc[k])
     return result
 
+_submitOpMonkeyPatched = false
+
+_monkeyPatch = (agent) ->
+  UserAgent = Object.getPrototypeOf(agent)
+  model = ShareJS.model
+  # Overriding https://github.com/share/ShareJS/blob/v0.6.2/src/server/useragent.coffee,
+  # including variables in closure. >.< @josephg
+  UserAgent.submitOp = (docName, opData, callback) ->
+    opData.meta ||= {}
+    opData.meta.userId = @name
+    opData.meta.source = @sessionId
+    dupIfSource = opData.dupIfSource or []
+
+    # If ops and meta get coalesced, they should be separated here.
+    if opData.op
+      @doAuth {docName, op:opData.op, v:opData.v, meta:opData.meta, dupIfSource}, 'submit op', callback, =>
+        model.applyOp docName, opData, callback
+    else
+      @doAuth {docName, meta:opData.meta}, 'submit meta', callback, =>
+        model.applyMetaOp docName, opData, callback
+
+  console.log "ShareJS: patched UserAgent submitOp function to record Meteor userId"
+  _submitOpMonkeyPatched = true
+
 # Based on https://github.com/share/ShareJS/wiki/User-access-control
 class @MeteorAccountsAuthHandler
   constructor: (@options, @client) ->
@@ -101,6 +125,9 @@ class @MeteorAccountsAuthHandler
     return future
 
   handle: (agent, action) =>
+    # This is ugly, but we have no other way to store Meteor usernames in ShareJS 0.6.2
+    _monkeyPatch(agent) unless _submitOpMonkeyPatched
+
     authenticate = @options.authenticate?
     authorize = @options.authorize?
     opsToAuthorize = @options.authorize?.apply_on
