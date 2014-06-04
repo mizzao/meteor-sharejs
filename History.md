@@ -1,3 +1,8 @@
+## vNEXT
+
+* Set the default value of `opsCollectionPerDoc` to `false` for the ShareJS Mongo driver. This reduces the amount of collection namespace pollution. **However, you will need to migrate your data from the previous per-document collections if you didn't use this option in an earlier version of this package.** Otherwise, your previous documents will be empty when your app loads.
+* Created a helper function to create a document on the server, and added a couple of tests (implicitly testing the rest of the stack.)
+
 ## v0.5.2
 
 * Added built-in support for loading Ace editor extensions and themes.

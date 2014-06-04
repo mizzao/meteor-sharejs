@@ -12,6 +12,8 @@ options = _.extend {
   db: {
     # Default option is Mongo because Meteor provides it
     type: 'mongo'
+    # A doc/op indexed collection keeps the namespace cleaner in a Meteor app.
+    opsCollectionPerDoc: false
   }
 }, Meteor.settings.sharejs?.options
 
@@ -45,3 +47,19 @@ Npm.require('share').server.attach(WebApp.connectHandlers, options);
   https://github.com/share/ShareJS/blob/v0.6.2/src/server/index.coffee
 ###
 ShareJS.model = WebApp.connectHandlers.model
+
+# A convenience function for creating a document on the server.
+ShareJS.initializeDoc = (docName, content) ->
+  ShareJS.model.create docName, 'text', {}, (err) ->
+    if err
+      console.log(err)
+      return
+    # One op; insert all the content at position 0
+    # https://github.com/share/ShareJS/wiki/Server-api
+    opData = {
+      op: [ {i: content, p: 0} ]
+      v: 0
+      meta: {}
+    }
+    ShareJS.model.applyOp docName, opData, (err, res) ->
+      console.log(err) if err

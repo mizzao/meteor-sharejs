@@ -94,3 +94,15 @@ Package.on_use(function (api) {
   // Export the ShareJS interface
   api.export('ShareJS', 'server');
 });
+
+Package.on_test(function (api) {
+  api.use([
+    'coffeescript',
+    'tinytest',
+    'test-helpers'
+  ]);
+
+  api.use("sharejs");
+
+  api.add_files('tests/server_tests.coffee', 'server');
+});
