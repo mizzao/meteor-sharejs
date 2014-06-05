@@ -31,6 +31,17 @@ switch options.db.type
     connection._withDb (db) -> future.return(db)
     options.db.client = future.wait()
 
+    # Disable the open command due to the bug introduced in ShareJS 0.6.3
+    # where an open database connection is not accepted
+    # https://github.com/share/ShareJS/commit/f98a4adeca396df3ec6b1d838b965ff158f452a3
+
+    # Meteor has already opened the database connection, so this should work,
+    # but watch monkey-patch carefully with changes in how
+    # https://github.com/meteor/meteor/blob/devel/packages/mongo-livedata/mongo_driver.js
+    # uses the API at
+    # http://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html
+    options.db.client.open = ->
+
     if options.accounts_auth?
       options.auth = new MeteorAccountsAuthHandler(options.accounts_auth, options.db.client).handle
   else

@@ -1,7 +1,7 @@
 meteor-sharejs [![Build Status](https://travis-ci.org/mizzao/meteor-sharejs.svg)](https://travis-ci.org/mizzao/meteor-sharejs)
 ==============
 
-Meteor smart package for transparently adding ShareJS editors to an app. Includes the [Ace editor](http://ace.c9.io/).
+Meteor smart package for transparently adding [ShareJS](https://github.com/share/ShareJS) editors to an app. Includes the [Ace editor](http://ace.c9.io/).
 
 Demo app: http://documents.meteor.com ([source](demo))
 

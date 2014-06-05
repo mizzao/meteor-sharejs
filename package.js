@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Npm.depends({
-  share: "0.6.2",
+  share: "0.6.3",
   /*
       Mongo version used in 0.8.0, but we just use MongoInternals.
       Grabbed from https://github.com/meteor/meteor/blob/devel/packages/mongo-livedata/package.js

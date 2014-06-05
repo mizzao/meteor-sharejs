@@ -66,7 +66,7 @@ Template._sharejsAce.rendered = ->
       @_editor.setReadOnly(false)
       @_doc = doc
 
-  # Configure the editor as requested
-  @data.callback?(@_editor)
+      # Configure the editor as requested
+      @data.callback?(@_editor)
 
 Template._sharejsAce.destroyed = cleanup

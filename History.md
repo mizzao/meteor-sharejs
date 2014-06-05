@@ -1,5 +1,8 @@
 ## vNEXT
 
+* Bump ShareJS version to 0.6.3.
+* Adjust Ace config callback to run after the editor has been connected.
+* Created a helper function to create a document on the server, and added a couple of tests (implicitly testing the rest of the stack.)
 * Set the default value of `opsCollectionPerDoc` to `false` for the ShareJS Mongo driver. This reduces the amount of collection namespace pollution. **However, you will need to migrate your data from the previous per-document collections if you didn't use this option in an earlier version of this package.** Otherwise, your previous documents will be empty when your app loads. You can also override this behavior and use your previous schema by including the following in `Meteor.settings`:
 
     ```json
@@ -14,8 +17,6 @@
         }
     }
     ```
-
-* Created a helper function to create a document on the server, and added a couple of tests (implicitly testing the rest of the stack.)
 * Store the Meteor `userId` in the ShareJS ops collection through some egregious monkey-patching. Hopefully the modularity of ShareJS 0.7 will make this easier; to make sure this happens, you should pitch in at https://github.com/share/ShareJS/issues/286.
 
 ## v0.5.2
