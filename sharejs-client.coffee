@@ -1,72 +1,150 @@
 # Set asset path in Ace config
 require('ace/config').set('basePath', '/packages/sharejs/ace-builds/src')
 
-# Hack the shit out of the Blaze Component API
-# until https://github.com/meteor/meteor/issues/2010 is resolved
-UI.registerHelper "sharejsAce", ->
-  UI.Component.extend
-    kind: "ShareJSAce",
-    render: -> Template._sharejsAce
+class ShareJSConnector
 
-UI.registerHelper "sharejsText", ->
-  UI.Component.extend
-    kind: "ShareJSText",
-    render: -> Template._sharejsText
+  getOptions = ->
+    origin: '//' + window.location.host + '/channel'
+    authentication: Meteor.userId?() or null # accounts-base may not be in the app
 
-host = window.location.host
+  constructor: (parentView) ->
+    # Create a ReactiveVar that tracks the docId that was passed in
+    docIdVar = new Blaze.ReactiveVar
 
-getOptions = ->
-  origin: '//' + host + '/channel'
-  authentication: Meteor.userId?() or null # accounts-base may not be in the app
+    parentView.onRendered ->
+      this.autorun ->
+        data = Blaze.getCurrentData()
+        docIdVar.set(data.docid)
 
-cleanup = ->
-  # console.log "cleaning up"
-  # Detach event listeners from the textarea, unless you want crazy shit happenin'
-  if @_elem?
-    @_elem.detach_share?()
-    @_elem = null
-  # Detach ace editor, if any
-  if @_editor?
-    @_doc?.detach_ace?()
-    @_editor = null
-  # Close connection to the node server
-  if @_doc?
-    @_doc.close()
-    @_doc = null
+    parentView.onDestroyed =>
+      this.destroy()
 
-Template._sharejsText.rendered = ->
-  @_elem = document.getElementById(@data.id || "sharejsTextEditor")
-  @_elem.disabled = true
+    @isCreated = false
+    @docIdVar = docIdVar
 
-  sharejs.open @data.docid, 'text', getOptions(), (error, doc) =>
-    if error
-      console.log error
-    else
-      # Don't attach duplicate editors if re-render happens too fast
-      return unless @_elem? and doc.name is @data.docid
+  create: ->
+    throw new Error("Already created") if @isCreated
+    connector = this
+    @isCreated = true
 
-      doc.attach_textarea(@_elem)
-      @_elem.disabled = false
-      @_doc = doc
+    @view = @createView()
+    @view.onRendered ->
+      connector.rendered( this.domrange.firstNode() )
 
-Template._sharejsText.destroyed = cleanup
+      this.autorun ->
+        # By grabbing docId here, we ensure that we only try to connect when
+        # this is rendered.
+        docId = connector.docIdVar.get()
 
-Template._sharejsAce.rendered = ->
-  @_editor = ace.edit(@data.id || "sharejsAceEditor")
-  @_editor.setReadOnly(true); # Disable editing until share is connected
+        # Disconnect any existing connections
+        connector.disconnect()
+        connector.connect(docId) if docId
 
-  sharejs.open @data.docid, 'text', getOptions(), (error, doc) =>
-    if error
-      console.log error
-    else
-      # Don't attach duplicate editors if re-render happens too fast
-      return unless @_editor? and doc.name is @data.docid
+    return @view
 
-      doc.attach_ace(@_editor)
-      @_editor.setReadOnly(false)
-      @_doc = doc
+  # Set up the context when rendered.
+  rendered: (element) ->
+    this.element = element
 
-      # Configure the editor as requested
-      @data.callback?(@_editor)
+  # Connect to a document.
+  connect: (docId, element) ->
+    @connectingId = docId
 
-Template._sharejsAce.destroyed = cleanup
+    sharejs.open docId, 'text', getOptions(), (error, doc) =>
+      if error
+        Meteor._debug(error)
+        return
+
+      # Don't attach if re-render happens too quickly and we're trying to
+      # connect to a different document now.
+      unless @connectingId is doc.name
+        doc.close() # Close immediately
+      else
+        @attach(doc)
+
+  # Attach shareJS to the on-screen editor
+  attach: (doc) ->
+    @doc = doc
+
+  # Disconnect from ShareJS. This should be idempotent.
+  disconnect: ->
+    # Close connection to the ShareJS doc
+    if @doc?
+      @doc.close()
+      @doc = null
+
+  # Destroy the connector and make sure everything's disconnected.
+  destroy: ->
+    throw new Error("Already destroyed") if @isDestroyed
+
+    @disconnect()
+    @view = null
+    @isDestroyed = true
+
+class ShareJSAceConnector extends ShareJSConnector
+  constructor: (parentView) ->
+    super
+    @configCallback = Blaze.getViewData(parentView).callback
+
+  createView: ->
+    return Blaze.With(Blaze.getCurrentData, -> Template._sharejsAce)
+
+  rendered: (element) ->
+    super
+    @ace = ace.edit(element)
+    # Configure the editor if specified
+    @configCallback?(@ace)
+
+  connect: ->
+    @ace.setReadOnly(true); # Disable editing until share is connected
+    super
+
+  attach: (doc) ->
+    super
+    doc.attach_ace(@ace)
+    @ace.setReadOnly(false)
+
+  disconnect: ->
+    # Detach ace editor, if any
+    @doc?.detach_ace?()
+    super
+
+  destroy: ->
+    super
+    # Meteor._debug "destroying Ace editor"
+    @ace?.destroy()
+    @ace = null
+
+class ShareJSTextConnector extends ShareJSConnector
+  createView: ->
+    return Blaze.With(Blaze.getCurrentData, -> Template._sharejsText)
+
+  rendered: (element) ->
+    super
+    @textarea = element
+
+  connect: ->
+    @textarea.disabled = true
+    super
+
+  attach: (doc) ->
+    super
+    doc.attach_textarea(@textarea)
+    @textarea.disabled = false
+
+  disconnect: ->
+    @textarea?.detach_share?()
+    super
+
+  destroy: ->
+    super
+    # Meteor._debug "destroying textarea editor"
+    @textarea = null
+
+UI.registerHelper "sharejsAce", Template.__create__('sharejsAce', ->
+  return new ShareJSAceConnector(this).create()
+)
+
+UI.registerHelper "sharejsText", Template.__create__('sharejsText', ->
+  return new ShareJSTextConnector(this).create()
+)

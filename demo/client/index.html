@@ -52,15 +52,27 @@
 <template name="editor">
     {{#with docid}}
         {{> docTitle this}}
-        {{> sharejsAce docid=this callback=config id="editor"}}
+        {{#if textarea}}
+            {{> sharejsText docid=this id="editor"}}
+        {{else}}
+            {{> sharejsAce docid=this callback=config id="editor"}}
+        {{/if}}
     {{/with}}
 </template>
 
 <template name="docTitle">
     <div class="navbar navbar-default">
         <form class="navbar-form pull-left">
-            <input class="form-control" type="text" value="{{title}}">
+            <input class="form-control" type="text" name="title" value="{{title}}">
             <button class="btn btn-danger btn-small">Delete this document</button>
+        </form>
+        <form class="navbar-form pull-right">
+            <label class="radio-inline">
+                <input type="radio" name="editor" value="ace" checked={{editorType "ace"}}> Ace Editor
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="editor" value="textarea" checked={{editorType "textarea"}}>Textarea
+            </label>
         </form>
     </div>
 </template>

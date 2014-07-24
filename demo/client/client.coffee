@@ -17,15 +17,19 @@ Template.docItem.events =
     e.preventDefault()
     Session.set("document", @_id)
 
+Session.setDefault("editorType", "ace")
+
 Template.docTitle.title = ->
   # Strange bug https://github.com/meteor/meteor/issues/1447
   Documents.findOne(@+"")?.title
+
+Template.docTitle.editorType = (type) -> Session.equals("editorType", type)
 
 Template.editor.docid = ->
   Session.get("document")
 
 Template.editor.events =
-  "keydown input": (e) ->
+  "keydown input[name=title]": (e) ->
     return unless e.keyCode == 13
     e.preventDefault()
 
@@ -39,6 +43,11 @@ Template.editor.events =
     id = Session.get("document")
     Session.set("document", null)
     Meteor.call "deleteDocument", id
+
+  "change input[name=editor]": (e) ->
+    Session.set("editorType", e.target.value)
+
+Template.editor.textarea = -> Session.equals("editorType", "textarea")
 
 Template.editor.config = ->
   (ace) ->
