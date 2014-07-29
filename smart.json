@@ -3,7 +3,7 @@
     "description": "server (& client library) to allow concurrent editing of any kind of content",
     "homepage": "https://github.com/mizzao/meteor-sharejs",
     "author": "Andrew Mao  (http://www.andrewmao.net)",
-    "version": "0.5.2",
+    "version": "0.6.0",
     "git": "https://github.com/mizzao/meteor-sharejs.git",
     "packages": {}
 }

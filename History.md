@@ -1,6 +1,6 @@
-## vNEXT
+## v0.6.0
 
-* Updated for Meteor 0.8.3, integrating document switching with `Blaze.View`. See the updated demo.
+* Updated for Meteor 0.8.3, integrating document switching with `Blaze.View`. See the updated demo. Changing the `docId` element of the helper no longer triggers a re-render.
 * Bump ShareJS version to 0.6.3.
 * Set Ace config callback to run after the editor has been rendered.
 * Created a helper function to create a document on the server, and added a couple of tests (implicitly testing the rest of the stack.)
