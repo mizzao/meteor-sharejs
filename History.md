@@ -1,3 +1,7 @@
+## vNEXT
+
+* Create separate `onRender` and `onConnect` callbacks for the Ace editor.
+
 ## v0.6.0
 
 * Updated for Meteor 0.8.3, integrating document switching with `Blaze.View`. See the updated demo. Changing the `docId` element of the helper no longer triggers a re-render.

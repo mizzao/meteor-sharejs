@@ -84,7 +84,9 @@ class ShareJSConnector
 class ShareJSAceConnector extends ShareJSConnector
   constructor: (parentView) ->
     super
-    @configCallback = Blaze.getViewData(parentView).callback
+    params = Blaze.getViewData(parentView)
+    @configCallback = params.onRender || params.callback # back-compat
+    @connectCallback = params.onConnect
 
   createView: ->
     return Blaze.With(Blaze.getCurrentData, -> Template._sharejsAce)
@@ -103,6 +105,7 @@ class ShareJSAceConnector extends ShareJSConnector
     super
     doc.attach_ace(@ace)
     @ace.setReadOnly(false)
+    @connectCallback?(@ace)
 
   disconnect: ->
     # Detach ace editor, if any

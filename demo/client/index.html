@@ -55,7 +55,7 @@
         {{#if textarea}}
             {{> sharejsText docid=this id="editor"}}
         {{else}}
-            {{> sharejsAce docid=this callback=config id="editor"}}
+            {{> sharejsAce docid=this onRender=config id="editor"}}
         {{/if}}
     {{/with}}
 </template>

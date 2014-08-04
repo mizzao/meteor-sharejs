@@ -30,22 +30,24 @@ The templates will clean themselves up when re-rendered (i.e., you have several 
 
 ## Client Configuration
 
-For the Ace editor, define a custom callback in the options hash and pass it in to configure the editor after it is rendered.
+For the Ace editor, you can define `onRender` and `onConnect` callbacks in the options hash and use it to configure the editor. `onRender` is called when the editor is initially rendered, and `onConnect` is called after each successful connection to a document.
 
 ```
-{{> sharejsAce docid=document callback=config id="editor"}}
+{{> sharejsAce docid=document onRender=config onConnect=setMode id="editor"}}
 ```
 
 All [standard Ace themes and extensions](https://github.com/ajaxorg/ace-builds/tree/master/src) are supported. Note that the helper has to return a function inside of a function:
 
 ```
-Template.foo.config = ->
-  (editor) ->
+Template.foo.config = function () {
+  return function(editor) {
     # Set some reasonable options on the editor
     editor.setTheme('ace/theme/monokai')
     editor.getSession().setMode('ace/mode/javascript')
     editor.setShowPrintMargin(false)
     editor.getSession().setUseWrapMode(true)
+  }
+};
 ```
 
 ## Server Configuration
