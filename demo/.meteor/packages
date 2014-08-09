@@ -8,5 +8,5 @@ insecure
 standard-app-packages
 coffeescript
 stylus
-sharejs
-bootstrap-3
+mizzao:sharejs
+mrt:bootstrap-3

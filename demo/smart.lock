@@ -2,19 +2,13 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "sharejs": {
+      "mizzao:sharejs": {
         "path": ".."
-      },
-      "bootstrap-3": {}
+      }
     },
     "packages": {
-      "sharejs": {
+      "mizzao:sharejs": {
         "path": ".."
-      },
-      "bootstrap-3": {
-        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v3.2.0-1",
-        "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
       }
     }
   }

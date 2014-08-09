@@ -1,8 +1,7 @@
 {
   "packages": {
-    "sharejs": {
+    "mizzao:sharejs": {
       "path": ".."
-    },
-    "bootstrap-3": {}
+    }
   }
 }

@@ -8,7 +8,7 @@ Demo app: http://documents.meteor.com ([source](demo))
 ## Install
 
 ```
-$ mrt add sharejs
+$ meteor add mizzao:sharejs
 ```
 
 ## Usage

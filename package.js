@@ -1,5 +1,7 @@
 Package.describe({
-    summary: "server (& client library) to allow concurrent editing of any kind of content"
+  summary: "server (& client library) to allow concurrent editing of any kind of content",
+  version: "0.6.0",
+  git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
 Npm.depends({
@@ -53,7 +55,9 @@ function getFilesFromFolder(packageName, folder){
   return result;
 }
 
-Package.on_use(function (api) {
+Package.onUse(function (api) {
+  api.versionsFrom("METEOR-CORE@0.9.0-atm");
+
   var _ = Npm.require("underscore");
 
   api.use(['coffeescript', 'underscore']);
@@ -71,7 +75,7 @@ Package.on_use(function (api) {
   api.add_files(aceJS, 'client', { bare: true });
 
   // Add Ace files as assets that can be loaded by the client later
-  var aceSettings = getFilesFromFolder("sharejs", "ace-builds/src");
+  var aceSettings = getFilesFromFolder("mizzao:sharejs", "ace-builds/src");
   api.add_files(_.without(aceSettings, aceJS), 'client', {isAsset: true});
 
   // Add the ShareJS connectors
@@ -95,14 +99,14 @@ Package.on_use(function (api) {
   api.export('ShareJS', 'server');
 });
 
-Package.on_test(function (api) {
+Package.onTest(function (api) {
   api.use([
     'coffeescript',
     'tinytest',
     'test-helpers'
   ]);
 
-  api.use("sharejs");
+  api.use("mizzao:sharejs");
 
   api.add_files('tests/server_tests.coffee', 'server');
 });
