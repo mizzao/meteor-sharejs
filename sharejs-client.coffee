@@ -1,5 +1,5 @@
 # Set asset path in Ace config
-require('ace/config').set('basePath', '/packages/sharejs/ace-builds/src')
+require('ace/config').set('basePath', '/packages/mizzao:sharejs/ace-builds/src')
 
 class ShareJSConnector
 
