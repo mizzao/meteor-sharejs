@@ -1,4 +1,5 @@
 Package.describe({
+  name: "mizzao:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
   version: "0.6.0",
   git: "https://github.com/mizzao/meteor-sharejs.git"
@@ -56,7 +57,7 @@ function getFilesFromFolder(packageName, folder){
 }
 
 Package.onUse(function (api) {
-  api.versionsFrom("METEOR-CORE@0.9.0-atm");
+  api.versionsFrom("METEOR@0.9.0");
 
   var _ = Npm.require("underscore");
 
@@ -65,32 +66,32 @@ Package.onUse(function (api) {
   api.use(['mongo-livedata', 'routepolicy', 'webapp'], 'server');
 
   // ShareJS script files
-  api.add_files([
+  api.addFiles([
       '.npm/package/node_modules/share/node_modules/browserchannel/dist/bcsocket.js',
       '.npm/package/node_modules/share/webclient/share.js'
   ], 'client');
 
   // Ace editor for the client
   var aceJS = 'ace-builds/src/ace.js';
-  api.add_files(aceJS, 'client', { bare: true });
+  api.addFiles(aceJS, 'client', { bare: true });
 
   // Add Ace files as assets that can be loaded by the client later
   var aceSettings = getFilesFromFolder("mizzao:sharejs", "ace-builds/src");
-  api.add_files(_.without(aceSettings, aceJS), 'client', {isAsset: true});
+  api.addFiles(_.without(aceSettings, aceJS), 'client', {isAsset: true});
 
   // Add the ShareJS connectors
   // TODO: a really smart package would not push both of these to the client depending on use case
-  api.add_files('.npm/package/node_modules/share/webclient/ace.js', 'client');
-  api.add_files('.npm/package/node_modules/share/webclient/textarea.js', 'client');
+  api.addFiles('.npm/package/node_modules/share/webclient/ace.js', 'client');
+  api.addFiles('.npm/package/node_modules/share/webclient/textarea.js', 'client');
 
   // Our files
-  api.add_files([
+  api.addFiles([
       'sharejs-templates.html',
       'sharejs-client.coffee'
   ], 'client');
 
   // Server files
-  api.add_files([
+  api.addFiles([
       'sharejs-meteor-auth.coffee',
       'sharejs-server.coffee'
   ], 'server');
@@ -108,5 +109,5 @@ Package.onTest(function (api) {
 
   api.use("mizzao:sharejs");
 
-  api.add_files('tests/server_tests.coffee', 'server');
+  api.addFiles('tests/server_tests.coffee', 'server');
 });
