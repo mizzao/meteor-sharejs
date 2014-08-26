@@ -8,12 +8,12 @@ Package.describe({
 Npm.depends({
   share: "0.6.3",
   /*
-      Mongo version used in 0.8.0, but we just use MongoInternals.
+      Mongo version used in 0.9 - we just use MongoInternals.
       Grabbed from https://github.com/meteor/meteor/blob/devel/packages/mongo-livedata/package.js
       Update this whenever we target a new Meteor version.
-      This is necessary for ShareJS to resolve the mongodb dependency and not complain.
+      This is necessary for ShareJS to require("mongodb") and not complain.
   */
-  mongodb: "1.4.1"
+  mongodb: "https://github.com/meteor/node-mongodb-native/tarball/cbd6220ee17c3178d20672b4a1df80f82f97d4c1"
 });
 
 // Ugly-ass function stolen from http://stackoverflow.com/a/20794116/586086
