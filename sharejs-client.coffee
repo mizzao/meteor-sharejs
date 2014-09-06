@@ -11,12 +11,12 @@ class ShareJSConnector
     # Create a ReactiveVar that tracks the docId that was passed in
     docIdVar = new Blaze.ReactiveVar
 
-    parentView.onRendered ->
+    parentView.onViewReady ->
       this.autorun ->
-        data = Blaze.getCurrentData()
+        data = Template.currentData()
         docIdVar.set(data.docid)
 
-    parentView.onDestroyed =>
+    parentView.onViewDestroyed =>
       this.destroy()
 
     @isCreated = false
@@ -28,8 +28,8 @@ class ShareJSConnector
     @isCreated = true
 
     @view = @createView()
-    @view.onRendered ->
-      connector.rendered( this.domrange.firstNode() )
+    @view.onViewReady ->
+      connector.rendered( this._domrange.firstNode() )
 
       this.autorun ->
         # By grabbing docId here, we ensure that we only try to connect when
@@ -84,12 +84,12 @@ class ShareJSConnector
 class ShareJSAceConnector extends ShareJSConnector
   constructor: (parentView) ->
     super
-    params = Blaze.getViewData(parentView)
+    params = Blaze.getData(parentView)
     @configCallback = params.onRender || params.callback # back-compat
     @connectCallback = params.onConnect
 
   createView: ->
-    return Blaze.With(Blaze.getCurrentData, -> Template._sharejsAce)
+    return Blaze.With(Template.currentData, -> Template._sharejsAce)
 
   rendered: (element) ->
     super
@@ -120,7 +120,7 @@ class ShareJSAceConnector extends ShareJSConnector
 
 class ShareJSTextConnector extends ShareJSConnector
   createView: ->
-    return Blaze.With(Blaze.getCurrentData, -> Template._sharejsText)
+    return Blaze.With(Template.currentData, -> Template._sharejsText)
 
   rendered: (element) ->
     super
@@ -144,10 +144,10 @@ class ShareJSTextConnector extends ShareJSConnector
     # Meteor._debug "destroying textarea editor"
     @textarea = null
 
-UI.registerHelper "sharejsAce", Template.__create__('sharejsAce', ->
+UI.registerHelper "sharejsAce", new Template('sharejsAce', ->
   return new ShareJSAceConnector(this).create()
 )
 
-UI.registerHelper "sharejsText", Template.__create__('sharejsText', ->
+UI.registerHelper "sharejsText", new Template('sharejsText', ->
   return new ShareJSTextConnector(this).create()
 )
