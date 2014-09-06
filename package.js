@@ -57,7 +57,7 @@ function getFilesFromFolder(packageName, folder){
 }
 
 Package.onUse(function (api) {
-  api.versionsFrom("METEOR@0.9.0");
+  api.versionsFrom("METEOR@0.9.1");
 
   var _ = Npm.require("underscore");
 
