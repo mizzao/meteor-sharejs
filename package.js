@@ -9,7 +9,7 @@ Npm.depends({
   share: "0.6.3",
   /*
       Mongo version used in 0.9 - we just use MongoInternals.
-      Grabbed from https://github.com/meteor/meteor/blob/devel/packages/mongo-livedata/package.js
+      Grabbed from https://github.com/meteor/meteor/blob/devel/packages/mongo/package.js
       Update this whenever we target a new Meteor version.
       This is necessary for ShareJS to require("mongodb") and not complain.
   */
@@ -57,7 +57,7 @@ function getFilesFromFolder(packageName, folder){
 }
 
 Package.onUse(function (api) {
-  api.versionsFrom("METEOR@0.9.1");
+  api.versionsFrom("0.9.1");
 
   var _ = Npm.require("underscore");
 

@@ -13,7 +13,7 @@ class ShareJSConnector
 
     parentView.onViewReady ->
       this.autorun ->
-        data = Template.currentData()
+        data = Blaze.getData()
         docIdVar.set(data.docid)
 
     parentView.onViewDestroyed =>
@@ -29,7 +29,7 @@ class ShareJSConnector
 
     @view = @createView()
     @view.onViewReady ->
-      connector.rendered( this._domrange.firstNode() )
+      connector.rendered( this.firstNode() )
 
       this.autorun ->
         # By grabbing docId here, we ensure that we only try to connect when
@@ -89,7 +89,7 @@ class ShareJSAceConnector extends ShareJSConnector
     @connectCallback = params.onConnect
 
   createView: ->
-    return Blaze.With(Template.currentData, -> Template._sharejsAce)
+    return Blaze.With(Blaze.getData, -> Template._sharejsAce)
 
   rendered: (element) ->
     super
@@ -120,7 +120,7 @@ class ShareJSAceConnector extends ShareJSConnector
 
 class ShareJSTextConnector extends ShareJSConnector
   createView: ->
-    return Blaze.With(Template.currentData, -> Template._sharejsText)
+    return Blaze.With(Blaze.getData, -> Template._sharejsText)
 
   rendered: (element) ->
     super
