@@ -1,8 +1,9 @@
 <head>
   <title>Meteor Docs!</title>
+
 </head>
 
-<body>
+<body>  
     {{> forkme}}
     {{> main}}
 </body>
@@ -55,7 +56,11 @@
         {{#if textarea}}
             {{> sharejsText docid=this id="editor"}}
         {{else}}
-            {{> sharejsAce docid=this onRender=config id="editor"}}
+            {{#if cm}}
+                {{> sharejsCM docid=this onRender=configCM id="editor"}}
+            {{else}}
+                {{> sharejsAce docid=this onRender=configAce id="editor"}}
+            {{/if}}
         {{/if}}
     {{/with}}
 </template>
@@ -69,6 +74,9 @@
         <form class="navbar-form pull-right">
             <label class="radio-inline">
                 <input type="radio" name="editor" value="ace" checked={{editorType "ace"}}> Ace Editor
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="editor" value="cm" checked={{editorType "cm"}}> CodeMirror
             </label>
             <label class="radio-inline">
                 <input type="radio" name="editor" value="textarea" checked={{editorType "textarea"}}>Textarea

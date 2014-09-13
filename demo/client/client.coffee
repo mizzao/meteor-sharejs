@@ -48,10 +48,20 @@ Template.editor.events =
     Session.set("editorType", e.target.value)
 
 Template.editor.textarea = -> Session.equals("editorType", "textarea")
+Template.editor.cm = -> Session.equals("editorType", "cm")
+Template.editor.ace = -> Session.equals("editorType", "ace")
 
-Template.editor.config = ->
+Template.editor.configAce = ->
   (ace) ->
     # Set some reasonable options on the editor
     ace.setTheme('ace/theme/monokai')
     ace.setShowPrintMargin(false)
     ace.getSession().setUseWrapMode(true)
+
+Template.editor.configCM = ->
+  (cm) ->
+    cm.setOption("theme", "default")
+    cm.setOption("lineNumbers", true)
+    cm.setOption("lineWrapping", true)
+    cm.setOption("smartIndent", true)
+    cm.setOption("indentWithTabs", true)
