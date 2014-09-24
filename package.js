@@ -57,7 +57,7 @@ function getFilesFromFolder(packageName, folder){
 }
 
 Package.onUse(function (api) {
-  api.versionsFrom("0.9.2");
+  api.versionsFrom("0.9.2.2");
 
   var _ = Npm.require("underscore");
 
