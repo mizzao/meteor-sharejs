@@ -1,18 +1,18 @@
 Package.describe({
   name: "mizzao:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
-  version: "0.6.0",
+  version: "0.6.1",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
 Npm.depends({
   share: "0.6.3",
   /*
-      Mongo version used in 0.9 - we just use MongoInternals.
-      Grabbed from https://github.com/meteor/meteor/blob/devel/packages/mongo/package.js
-      Update this whenever we target a new Meteor version.
-      This is necessary for ShareJS to require("mongodb") and not complain.
-  */
+   Mongo version used in 0.9 - we just use MongoInternals.
+   Grabbed from https://github.com/meteor/meteor/blob/devel/packages/mongo/package.js
+   Update this whenever we target a new Meteor version.
+   This is necessary for ShareJS to require("mongodb") and not complain.
+   */
   mongodb: "https://github.com/meteor/node-mongodb-native/tarball/cbd6220ee17c3178d20672b4a1df80f82f97d4c1"
 });
 
@@ -47,8 +47,17 @@ function getFilesFromFolder(packageName, folder){
   }
   // save current working directory (something like "/home/user/projects/my-project")
   var cwd = process.cwd();
+
+  var isRunningFromApp = fs.existsSync(path.resolve("packages"));
+  var packagePath = "";
+  if (isRunningFromApp) {
+    packagePath = path.resolve("packages", packageName);
+  }
+
+  packagePath = path.resolve(packagePath);
+
   // chdir to our package directory
-  process.chdir(path.join("packages", packageName));
+  process.chdir(path.join(packagePath));
   // launch initial walk
   var result = walk(folder);
   // restore previous cwd
@@ -67,8 +76,8 @@ Package.onUse(function (api) {
 
   // ShareJS script files
   api.addFiles([
-      '.npm/package/node_modules/share/node_modules/browserchannel/dist/bcsocket.js',
-      '.npm/package/node_modules/share/webclient/share.js'
+    '.npm/package/node_modules/share/node_modules/browserchannel/dist/bcsocket.js',
+    '.npm/package/node_modules/share/webclient/share.js'
   ], 'client');
 
   // Ace editor for the client
@@ -86,14 +95,14 @@ Package.onUse(function (api) {
 
   // Our files
   api.addFiles([
-      'sharejs-templates.html',
-      'sharejs-client.coffee'
+    'sharejs-templates.html',
+    'sharejs-client.coffee'
   ], 'client');
 
   // Server files
   api.addFiles([
-      'sharejs-meteor-auth.coffee',
-      'sharejs-server.coffee'
+    'sharejs-meteor-auth.coffee',
+    'sharejs-server.coffee'
   ], 'server');
 
   // Export the ShareJS interface
