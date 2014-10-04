@@ -1,6 +1,8 @@
 ## vNEXT
 
-* **Update package for Meteor 0.9.**
+## v0.6.1 
+
+* **Update and publish package for Meteor 0.9.2 or later**.
 * Create separate `onRender` and `onConnect` callbacks for the Ace editor.
 
 ## v0.6.0

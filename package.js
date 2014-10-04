@@ -1,7 +1,7 @@
 Package.describe({
   name: "mizzao:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
-  version: "0.6.0",
+  version: "0.6.1",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
@@ -47,8 +47,13 @@ function getFilesFromFolder(packageName, folder){
   }
   // save current working directory (something like "/home/user/projects/my-project")
   var cwd = process.cwd();
+
+  var isRunningFromApp = fs.existsSync(path.resolve("packages"));
+  var packagePath = isRunningFromApp ? path.resolve("packages", packageName) : "";
+
+  packagePath = path.resolve(packagePath);
   // chdir to our package directory
-  process.chdir(path.join("packages", packageName));
+  process.chdir(path.join(packagePath));
   // launch initial walk
   var result = walk(folder);
   // restore previous cwd
