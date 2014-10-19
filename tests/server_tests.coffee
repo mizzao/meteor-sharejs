@@ -7,7 +7,7 @@ Ops = new Meteor.Collection("ops")
 Docs.remove {}
 Ops.remove {}
 
-sleep = Meteor._wrapAsync((time, cb) -> Meteor.setTimeout (-> cb undefined), time)
+sleep = Meteor.wrapAsync((time, cb) -> Meteor.setTimeout (-> cb undefined), time)
 
 Tinytest.add "server - model initialized properly", (test) ->
   test.isTrue(ShareJS.model)
