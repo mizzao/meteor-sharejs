@@ -1,4 +1,4 @@
-this.Documents = new Meteor.Collection("documents");
+this.Documents = new Meteor.Collection("documents")
 
 Meteor.methods
   deleteDocument: (id) ->

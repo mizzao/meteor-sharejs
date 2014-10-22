@@ -1,5 +1,9 @@
 ## vNEXT
 
+## v0.7.0
+
+* **The base ShareJS package and the Ace and CodeMirror editors are now different meteor packages.** `mizzao:sharejs` only has raw text editing, while `mizzao:sharejs-ace` provides the Ace editor and `mizzao:sharejs-cm` provides CodeMirror.  
+
 ## v0.6.1 
 
 * **Update and publish package for Meteor 0.9.2 or later**.

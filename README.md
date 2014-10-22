@@ -7,8 +7,22 @@ Demo app: http://documents.meteor.com ([source](demo))
 
 ## Install
 
+For vanilla ShareJS with text only:
+
 ```
 $ meteor add mizzao:sharejs
+```
+
+For ShareJS with the Ace editor:
+
+```
+$ meteor add mizzao:sharejs-ace
+```
+
+For ShareJS with the CodeMirror editor:
+
+```
+$ meteor add mizzao:sharejs-cm
 ```
 
 ## Usage
@@ -151,27 +165,6 @@ You can access the [ShareJS Server API](https://github.com/share/ShareJS/wiki/Se
 - Importing ace dependencies is somewhat unsatisfactory. Waiting for improvements to Meteor package management system.
 
 Please submit pull requests for better features and cooperation!
-
-## Problems Running Demo
-
-If you get an incompatibility error while installing or running the demo:
-```
-mizzao:sharejs: INCOMPATIBLE WITH METEOR 0.9.0 OR LATER
-```
-```
-W20140913-03:54:33.561(-4)? (STDERR) The package mizzao:sharejs at 0.6.0 is incompatible with Meteor 0.9.0 or later. 
-W20140913-03:54:33.897(-4)? (STDERR) If a new, compatible version of this package exists, running 'meteor update' should cause you to update.  
-```
-try cloning and running the demo like this instead:
-```
-git clone --recursive https://github.com/mizzao/meteor-sharejs
-mv meteor-sharejs/demo docs
-mkdir docs/packages
-mv meteor-sharejs docs/packages/mizzao:sharejs
-cd docs
-meteor
-```
-
 
 ## Contributors
 

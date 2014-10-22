@@ -1,5 +1,5 @@
-Template.docList.documents = ->
-  Documents.find()
+Template.docList.helpers
+  documents: -> Documents.find()
 
 Template.docList.events =
   "click button": ->
@@ -9,8 +9,8 @@ Template.docList.events =
       return unless id
       Session.set("document", id)
 
-Template.docItem.current = ->
-  Session.equals("document", @_id)
+Template.docItem.helpers
+  current: -> Session.equals("document", @_id)
 
 Template.docItem.events =
   "click a": (e) ->
@@ -19,14 +19,15 @@ Template.docItem.events =
 
 Session.setDefault("editorType", "ace")
 
-Template.docTitle.title = ->
-  # Strange bug https://github.com/meteor/meteor/issues/1447
-  Documents.findOne(@+"")?.title
+Template.docTitle.helpers
+  title: ->
+    # Strange bug https://github.com/meteor/meteor/issues/1447
+    Documents.findOne(@+"")?.title
 
-Template.docTitle.editorType = (type) -> Session.equals("editorType", type)
+  editorType: (type) -> Session.equals("editorType", type)
 
-Template.editor.docid = ->
-  Session.get("document")
+Template.editor.helpers
+  docid: -> Session.get("document")
 
 Template.editor.events =
   "keydown input[name=title]": (e) ->
@@ -47,21 +48,22 @@ Template.editor.events =
   "change input[name=editor]": (e) ->
     Session.set("editorType", e.target.value)
 
-Template.editor.textarea = -> Session.equals("editorType", "textarea")
-Template.editor.cm = -> Session.equals("editorType", "cm")
-Template.editor.ace = -> Session.equals("editorType", "ace")
+Template.editor.helpers
+  textarea: -> Session.equals("editorType", "textarea")
+  cm: -> Session.equals("editorType", "cm")
+  ace: -> Session.equals("editorType", "ace")
 
-Template.editor.configAce = ->
-  (ace) ->
-    # Set some reasonable options on the editor
-    ace.setTheme('ace/theme/monokai')
-    ace.setShowPrintMargin(false)
-    ace.getSession().setUseWrapMode(true)
+  configAce: ->
+    (ace) ->
+      # Set some reasonable options on the editor
+      ace.setTheme('ace/theme/monokai')
+      ace.setShowPrintMargin(false)
+      ace.getSession().setUseWrapMode(true)
 
-Template.editor.configCM = ->
-  (cm) ->
-    cm.setOption("theme", "default")
-    cm.setOption("lineNumbers", true)
-    cm.setOption("lineWrapping", true)
-    cm.setOption("smartIndent", true)
-    cm.setOption("indentWithTabs", true)
+  configCM: ->
+    (cm) ->
+      cm.setOption("theme", "default")
+      cm.setOption("lineNumbers", true)
+      cm.setOption("lineWrapping", true)
+      cm.setOption("smartIndent", true)
+      cm.setOption("indentWithTabs", true)

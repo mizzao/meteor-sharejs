@@ -1,6 +1,6 @@
 [submodule "ace-builds"]
-	path = ace-builds
+	path = sharejs-ace/ace-builds
 	url = https://github.com/ajaxorg/ace-builds.git
 [submodule "codemirror"]
-	path = codemirror
+	path = sharejs-cm/codemirror
 	url = https://github.com/marijnh/codemirror

@@ -1,7 +1,13 @@
 {
   "packages": {
     "mizzao:sharejs": {
-      "path": ".."
+      "path": "../sharejs-base"
+    },
+    "mizzao:sharejs-ace": {
+      "path": "../sharejs-ace"
+    },
+    "mizzao:sharejs-cm": {
+      "path": "../sharejs-cm"
     }
   }
 }

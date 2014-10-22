@@ -1,6 +1,3 @@
-# Set asset path in Ace config
-require('ace/config').set('basePath', '/packages/mizzao_sharejs/ace-builds/src')
-
 class ShareJSConnector
 
   getOptions = ->
@@ -81,78 +78,6 @@ class ShareJSConnector
     @view = null
     @isDestroyed = true
 
-class ShareJSAceConnector extends ShareJSConnector
-  constructor: (parentView) ->
-    super
-    params = Blaze.getData(parentView)
-    @configCallback = params.onRender || params.callback # back-compat
-    @connectCallback = params.onConnect
-
-  createView: ->
-    return Blaze.With(Blaze.getData, -> Template._sharejsAce)
-
-  rendered: (element) ->
-    super
-    @ace = ace.edit(element)
-    # Configure the editor if specified
-    @configCallback?(@ace)
-
-  connect: ->
-    @ace.setReadOnly(true); # Disable editing until share is connected
-    super
-
-  attach: (doc) ->
-    super
-    doc.attach_ace(@ace)
-    @ace.setReadOnly(false)
-    @connectCallback?(@ace)
-
-  disconnect: ->
-    # Detach ace editor, if any
-    @doc?.detach_ace?()
-    super
-
-  destroy: ->
-    super
-    # Meteor._debug "destroying Ace editor"
-    @ace?.destroy()
-    @ace = null
-
-class ShareJSCMConnector extends ShareJSConnector
-  constructor: (parentView) ->
-    super
-    params = Blaze.getData(parentView)
-    @configCallback = params.onRender || params.callback # back-compat
-    @connectCallback = params.onConnect
-
-  createView: ->
-    return Blaze.With(Blaze.getData, -> Template._sharejsCM)
-
-  rendered: (element) ->
-    super
-    @cm = CodeMirror.fromTextArea(element)
-    @configCallback?(@cm)
-
-  connect: ->
-    @cm.readOnly = true
-    super
-
-  attach: (doc) ->
-    super
-    doc.attach_cm(@cm)
-    @cm.readOnly = false
-    @connectCallback?(@cm)
-
-  disconnect: ->
-    @cm?.detach_share?()
-    super
-
-  destroy: ->
-    super
-    # Meteor._debug "destroying cm editor"
-    @cm?.toTextArea()
-    @cm = null
-
 class ShareJSTextConnector extends ShareJSConnector
   createView: ->
     return Blaze.With(Blaze.getData, -> Template._sharejsText)
@@ -178,14 +103,6 @@ class ShareJSTextConnector extends ShareJSConnector
     super
     # Meteor._debug "destroying textarea editor"
     @textarea = null
-
-UI.registerHelper "sharejsAce", new Template('sharejsAce', ->
-  return new ShareJSAceConnector(this).create()
-)
-
-UI.registerHelper "sharejsCM", new Template('sharejsCM', ->
-  return new ShareJSCMConnector(this).create()
-)
 
 UI.registerHelper "sharejsText", new Template('sharejsText', ->
   return new ShareJSTextConnector(this).create()
