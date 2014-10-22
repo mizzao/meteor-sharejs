@@ -84,10 +84,26 @@ Package.onUse(function (api) {
   var aceSettings = getFilesFromFolder("mizzao:sharejs", "ace-builds/src");
   api.addFiles(_.without(aceSettings, aceJS), 'client', {isAsset: true});
 
+  // CM editor for the client
+  api.addFiles([
+    'codemirror/lib/codemirror.js',
+    'codemirror/lib/codemirror.css',
+    'codemirror/theme/monokai.css',
+    'codemirror/addon/fold/foldgutter.css',
+    'codemirror/addon/fold/foldcode.js',
+    'codemirror/addon/fold/foldgutter.js',
+    'codemirror/addon/fold/indent-fold.js',
+    'codemirror/addon/hint/show-hint.js',
+    'codemirror/addon/display/placeholder.js',
+    'codemirror/addon/hint/show-hint.css'
+    /* include any extra codemirror ADDONS or MODES or THEMES here !!!! */
+  ], 'client', { bare: true });
+
   // Add the ShareJS connectors
   // TODO: a really smart package would not push both of these to the client depending on use case
   api.addFiles('.npm/package/node_modules/share/webclient/ace.js', 'client');
   api.addFiles('.npm/package/node_modules/share/webclient/textarea.js', 'client');
+  api.addFiles('.npm/package/node_modules/share/webclient/cm.js', 'client');
 
   // Our files
   api.addFiles([

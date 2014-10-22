@@ -1,7 +1,7 @@
 meteor-sharejs [![Build Status](https://travis-ci.org/mizzao/meteor-sharejs.svg)](https://travis-ci.org/mizzao/meteor-sharejs)
 ==============
 
-Meteor smart package for transparently adding [ShareJS](https://github.com/share/ShareJS) editors to an app. Includes the [Ace editor](http://ace.c9.io/).
+Meteor smart package for transparently adding [ShareJS](https://github.com/share/ShareJS) editors to an app. Includes [CodeMirror](http://codemirror.net/) and the [Ace editor](http://ace.c9.io/).
 
 Demo app: http://documents.meteor.com ([source](demo))
 
@@ -26,11 +26,16 @@ Use this helper to get an Ace editor. Make sure you specify a size (via CSS) on 
 {{> sharejsAce docid=docid id="editor"}}
 ```
 
+Use this helper to get a CodeMirror editor. 
+```
+{{> sharejsCM docid=docid id="editor"}}
+```
+
 The templates will clean themselves up when re-rendered (i.e., you have several documents and docid changes.)
 
 ## Client Configuration
 
-For the Ace editor, you can define `onRender` and `onConnect` callbacks in the options hash and use it to configure the editor. `onRender` is called when the editor is initially rendered, and `onConnect` is called after each successful connection to a document.
+For the Ace and CodeMirror editors, you can define `onRender` and `onConnect` callbacks in the options hash and use it to configure the editor. `onRender` is called when the editor is initially rendered, and `onConnect` is called after each successful connection to a document.
 
 ```
 {{> sharejsAce docid=document onRender=config onConnect=setMode id="editor"}}
@@ -147,7 +152,29 @@ You can access the [ShareJS Server API](https://github.com/share/ShareJS/wiki/Se
 
 Please submit pull requests for better features and cooperation!
 
+## Problems Running Demo
+
+If you get an incompatibility error while installing or running the demo:
+```
+mizzao:sharejs: INCOMPATIBLE WITH METEOR 0.9.0 OR LATER
+```
+```
+W20140913-03:54:33.561(-4)? (STDERR) The package mizzao:sharejs at 0.6.0 is incompatible with Meteor 0.9.0 or later. 
+W20140913-03:54:33.897(-4)? (STDERR) If a new, compatible version of this package exists, running 'meteor update' should cause you to update.  
+```
+try cloning and running the demo like this instead:
+```
+git clone --recursive https://github.com/mizzao/meteor-sharejs
+mv meteor-sharejs/demo docs
+mkdir docs/packages
+mv meteor-sharejs docs/packages/mizzao:sharejs
+cd docs
+meteor
+```
+
+
 ## Contributors
 
 * Andrew Mao (https://github.com/mizzao/)
 * Karan Batra-Daitch (https://github.com/kbdaitch)
+* CJ Carr (https://github.com/cortexelus)
