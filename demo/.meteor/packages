@@ -9,5 +9,5 @@ standard-app-packages
 coffeescript
 stylus
 mizzao:sharejs-ace
-mizzao:sharejs-cm
+mizzao:sharejs-codemirror
 mizzao:bootstrap-3

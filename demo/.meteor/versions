@@ -34,7 +34,7 @@ minifiers@1.1.2
 minimongo@1.0.5
 mizzao:bootstrap-3@3.3.0
 mizzao:sharejs-ace@1.1.2
-mizzao:sharejs-cm@4.7.0
+mizzao:sharejs-codemirror@4.7.0
 mizzao:sharejs@0.7.0
 mobile-status-bar@1.0.1
 mongo-livedata@1.0.6

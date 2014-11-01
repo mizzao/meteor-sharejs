@@ -22,7 +22,7 @@ $ meteor add mizzao:sharejs-ace
 For ShareJS with the CodeMirror editor:
 
 ```
-$ meteor add mizzao:sharejs-cm
+$ meteor add mizzao:sharejs-codemirror
 ```
 
 ## Usage

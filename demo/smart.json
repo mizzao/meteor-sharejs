@@ -6,8 +6,8 @@
     "mizzao:sharejs-ace": {
       "path": "../sharejs-ace"
     },
-    "mizzao:sharejs-cm": {
-      "path": "../sharejs-cm"
+    "mizzao:sharejs-codemirror": {
+      "path": "../sharejs-codemirror"
     }
   }
 }
