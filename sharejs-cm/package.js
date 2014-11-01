@@ -6,7 +6,7 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("0.9.4");
+  api.versionsFrom("1.0");
 
   api.use(['coffeescript', 'templating']);
 

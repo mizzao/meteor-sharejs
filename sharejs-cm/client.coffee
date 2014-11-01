@@ -2,7 +2,7 @@ class ShareJSCMConnector extends ShareJSConnector
   constructor: (parentView) ->
     super
     params = Blaze.getData(parentView)
-    @configCallback = params.onRender || params.callback # back-compat
+    @configCallback = params.onRender
     @connectCallback = params.onConnect
 
   createView: ->
@@ -10,7 +10,7 @@ class ShareJSCMConnector extends ShareJSConnector
 
   rendered: (element) ->
     super
-    @cm = CodeMirror.fromTextArea(element)
+    @cm = new CodeMirror(element)
     @configCallback?(@cm)
 
   connect: ->
@@ -24,13 +24,14 @@ class ShareJSCMConnector extends ShareJSConnector
     @connectCallback?(@cm)
 
   disconnect: ->
-    @cm?.detach_share?()
+    # from share/webclient/cm.js
+    @doc?.detach_cm?()
     super
 
   destroy: ->
     super
-    # Meteor._debug "destroying cm editor"
-    @cm?.toTextArea()
+    # Blaze will take it off the DOM,
+    # Nothing needs to be done explicitly to clean up.
     @cm = null
 
 UI.registerHelper "sharejsCM", new Template('sharejsCM', ->
