@@ -2,12 +2,6 @@
 require('ace/config').set('basePath', '/packages/mizzao_sharejs-ace/ace-builds/src')
 
 class ShareJSAceConnector extends ShareJSConnector
-  constructor: (parentView) ->
-    super
-    params = Blaze.getData(parentView)
-    @configCallback = params.onRender || params.callback # back-compat
-    @connectCallback = params.onConnect
-
   createView: ->
     return Blaze.With(Blaze.getData, -> Template._sharejsAce)
 

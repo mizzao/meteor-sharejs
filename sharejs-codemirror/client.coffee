@@ -1,10 +1,4 @@
 class ShareJSCMConnector extends ShareJSConnector
-  constructor: (parentView) ->
-    super
-    params = Blaze.getData(parentView)
-    @configCallback = params.onRender
-    @connectCallback = params.onConnect
-
   createView: ->
     return Blaze.With(Blaze.getData, -> Template._sharejsCM)
 
