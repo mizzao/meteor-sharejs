@@ -19,6 +19,10 @@ class ShareJSConnector
     @isCreated = false
     @docIdVar = docIdVar
 
+    params = Blaze.getData(parentView)
+    @configCallback = params.onRender
+    @connectCallback = params.onConnect
+
   create: ->
     throw new Error("Already created") if @isCreated
     connector = this
@@ -79,12 +83,14 @@ class ShareJSConnector
     @isDestroyed = true
 
 class ShareJSTextConnector extends ShareJSConnector
+
   createView: ->
     return Blaze.With(Blaze.getData, -> Template._sharejsText)
 
   rendered: (element) ->
     super
     @textarea = element
+    @configCallback?(@textarea)
 
   connect: ->
     @textarea.disabled = true
@@ -94,6 +100,7 @@ class ShareJSTextConnector extends ShareJSConnector
     super
     doc.attach_textarea(@textarea)
     @textarea.disabled = false
+    @connectCallback?(@textarea)
 
   disconnect: ->
     @textarea?.detach_share?()
