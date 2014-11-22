@@ -19,6 +19,7 @@ class ShareJSConnector
     @isCreated = false
     @docIdVar = docIdVar
 
+    # Configure any callbacks if specified
     params = Blaze.getData(parentView)
     @configCallback = params.onRender
     @connectCallback = params.onConnect
