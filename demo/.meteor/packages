@@ -10,4 +10,4 @@ coffeescript
 stylus
 mizzao:sharejs-ace
 mizzao:sharejs-codemirror
-mizzao:bootstrap-3
+twbs:bootstrap
