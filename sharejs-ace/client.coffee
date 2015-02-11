@@ -1,5 +1,6 @@
 # Set asset path in Ace config
 require('ace/config').set('basePath', '/packages/mizzao_sharejs-ace/ace-builds/src')
+UndoManager = require('ace/undomanager').UndoManager
 
 class ShareJSAceConnector extends ShareJSConnector
   createView: ->
@@ -18,6 +19,11 @@ class ShareJSAceConnector extends ShareJSConnector
   attach: (doc) ->
     super
     doc.attach_ace(@ace)
+    # Reset undo stack, so that we can't undo to an empty document
+    # XXX It seems that we should be able to use getUndoManager().reset()
+    # here, but that doesn't seem to work:
+    # http://japhr.blogspot.com/2012/10/ace-undomanager-and-setvalue.html
+    @ace.getSession().setUndoManager(new UndoManager)
     @ace.setReadOnly(false)
     @connectCallback?(@ace)
 
