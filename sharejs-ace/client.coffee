@@ -20,6 +20,9 @@ class ShareJSAceConnector extends ShareJSConnector
     doc.attach_ace(@ace)
     @ace.setReadOnly(false)
     @connectCallback?(@ace)
+    #Reset the undo manager, such that ctrl-z does not lead to an empty document
+    UndoManager = require("ace/undomanager").UndoManager;
+    @ace.getSession().setUndoManager(new UndoManager());
 
   disconnect: ->
     # Detach ace editor, if any
