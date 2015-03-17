@@ -1,5 +1,9 @@
 ## vNEXT
 
+## v0.7.2
+
+* Update references to Mongo driver to support Meteor 1.0.4.
+
 ## v0.7.1
 
 * Update format of config callbacks (caused #41 prior to being released.)

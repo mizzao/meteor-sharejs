@@ -1,23 +1,23 @@
 Package.describe({
   name: "mizzao:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
-  version: "0.7.1",
+  version: "0.7.2",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
 Npm.depends({
   share: "0.6.3",
   /*
-      Mongo version used in 0.9 - we just use MongoInternals.
+      Mongo version used in 1.0.4
       Grabbed from https://github.com/meteor/meteor/blob/devel/packages/mongo/package.js
       Update this whenever we target a new Meteor version.
       This is necessary for ShareJS to require("mongodb") and not complain.
   */
-  mongodb: "https://github.com/meteor/node-mongodb-native/tarball/cbd6220ee17c3178d20672b4a1df80f82f97d4c1"
+  mongodb: "https://github.com/meteor/node-mongodb-native/tarball/634759e6326dc19a228df66ddb309285532f3b8a"
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.0");
+  api.versionsFrom("1.0.4");
 
   api.use(['coffeescript', 'underscore']);
   api.use(['handlebars', 'templating'], 'client');

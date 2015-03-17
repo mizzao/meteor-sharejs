@@ -20,16 +20,11 @@ options = _.extend {
 switch options.db.type
   when 'mongo'
     ###
-      ShareJS 0.6.2 mongo driver:
-      https://github.com/share/ShareJS/blob/v0.6.2/src/server/db/mongo.coffee
+      ShareJS 0.6.3 mongo driver:
+      https://github.com/share/ShareJS/blob/v0.6.3/src/server/db/mongo.coffee
       It will create its own indices on the 'ops' collection.
     ###
-    connection = MongoInternals.defaultRemoteCollectionDriver().mongo
-
-    # Wait until we're connected to pass this to ShareJS
-    future = new Future
-    connection._withDb (db) -> future.return(db)
-    options.db.client = future.wait()
+    options.db.client = MongoInternals.defaultRemoteCollectionDriver().mongo.db
 
     # Disable the open command due to the bug introduced in ShareJS 0.6.3
     # where an open database connection is not accepted
