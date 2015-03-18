@@ -1,5 +1,9 @@
 ## vNEXT
 
+## v0.7.3
+
+* Remove the unnecessary Mongo driver reference entirely.
+
 ## v0.7.2
 
 * Update references to Mongo driver to support Meteor 1.0.4.
