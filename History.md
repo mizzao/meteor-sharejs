@@ -1,5 +1,9 @@
 ## vNEXT
 
+## v0.7.4
+
+* Bump release for Windows.
+
 ## v0.7.3
 
 * Remove the unnecessary Mongo driver reference entirely.
