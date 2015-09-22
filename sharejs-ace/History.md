@@ -1,3 +1,8 @@
+## v1.2.0
+
+* Update to v1.2.0 of Ace.
+* Support Meteor 1.2 (what a coincidence!)
+
 ## v1.1.8_1
 
 * Prevent an undo from erasing the initial document contents. (#40)

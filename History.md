@@ -1,5 +1,9 @@
 ## vNEXT
 
+## v0.7.5
+
+* Updates for Meteor 1.2.
+
 ## v0.7.4
 
 * Bump release for Windows.
