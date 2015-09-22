@@ -53,6 +53,7 @@ Package.onUse(function (api) {
 
 Package.onTest(function (api) {
   api.use([
+    'random',
     'coffeescript',
     'tinytest',
     'test-helpers'
