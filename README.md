@@ -13,10 +13,10 @@ For vanilla ShareJS with text only:
 $ meteor add mizzao:sharejs
 ```
 
-For ShareJS with the Ace editor:
+For ShareJS with the Ace editor (note the explicit version, see [#55](https://github.com/mizzao/meteor-sharejs/issues/55)):
 
 ```
-$ meteor add mizzao:sharejs-ace
+$ meteor add mizzao:sharejs-ace@1.1.9
 ```
 
 For ShareJS with the CodeMirror editor:
