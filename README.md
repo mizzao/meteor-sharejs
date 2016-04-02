@@ -171,3 +171,4 @@ Please submit pull requests for better features and cooperation!
 * Andrew Mao (https://github.com/mizzao/)
 * Karan Batra-Daitch (https://github.com/kbdaitch)
 * CJ Carr (https://github.com/cortexelus)
+* David Sichau (https://github.com/DavidSichau)

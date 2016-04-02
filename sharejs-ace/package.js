@@ -1,7 +1,7 @@
 Package.describe({
   name: "mizzao:sharejs-ace",
   summary: "ShareJS with the Ace Editor",
-  version: "1.1.9",
+  version: "1.3.0",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
@@ -65,12 +65,12 @@ Package.onUse(function (api) {
   api.addFiles(aceJS, 'client', { bare: true });
 
   // Add Ace files as assets that can be loaded by the client later
-
   var aceSettings = getFilesFromFolder("mizzao:sharejs-ace", "ace-builds/src");
   api.addAssets(_.without(aceSettings, aceJS), 'client');
-
+  
   api.addFiles([
     'templates.html',
-    'client.coffee'
+    'client.coffee',
+    'ace.js'
   ], 'client');
 });

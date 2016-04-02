@@ -1,3 +1,8 @@
+## v1.3.0
+
+ * Support of Meteor 1.3
+ * Support of ace v1.2 or newer
+
 ## v1.2.0
 
 * Update to v1.2.0 of Ace.

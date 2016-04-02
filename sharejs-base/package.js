@@ -1,7 +1,7 @@
 Package.describe({
   name: "mizzao:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
-  version: "0.7.5",
+  version: "0.8.0",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
@@ -14,14 +14,14 @@ Npm.depends({
 Package.onUse(function (api) {
   api.versionsFrom("1.2.0.1");
 
-  api.use(['coffeescript', 'underscore', 'ecmascript']);
+  api.use(['coffeescript', 'underscore']);
   api.use(['handlebars', 'templating'], 'client');
   api.use(['mongo-livedata', 'routepolicy', 'webapp'], 'server');
 
   // ShareJS script files
   api.addFiles([
-      '.npm/package/node_modules/share/node_modules/browserchannel/dist/bcsocket.js',
-      '.npm/package/node_modules/share/webclient/share.js'
+      '.npm/package/node_modules/share/node_modules/browserchannel/dist/bcsocket-uncompressed.js',
+      '.npm/package/node_modules/share/webclient/share.uncompressed.js'
   ], 'client');
 
   // Add the ShareJS connectors
@@ -29,7 +29,6 @@ Package.onUse(function (api) {
 
   // TODO these cannot be easily added by the subpackages, unfortunately
   // We add them as an asset so that they can be loaded later, asynchronously
-  api.addAssets('ace.js', 'client');
   api.addAssets('.npm/package/node_modules/share/webclient/cm.js', 'client');
 
   // Our files
