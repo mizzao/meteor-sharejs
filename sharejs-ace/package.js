@@ -65,6 +65,7 @@ Package.onUse(function (api) {
   api.addFiles(aceJS, 'client', { bare: true });
 
   // Add Ace files as assets that can be loaded by the client later
+
   var aceSettings = getFilesFromFolder("mizzao:sharejs-ace", "ace-builds/src");
   api.addAssets(_.without(aceSettings, aceJS), 'client');
 

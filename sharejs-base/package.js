@@ -14,7 +14,7 @@ Npm.depends({
 Package.onUse(function (api) {
   api.versionsFrom("1.2.0.1");
 
-  api.use(['coffeescript', 'underscore']);
+  api.use(['coffeescript', 'underscore', 'ecmascript']);
   api.use(['handlebars', 'templating'], 'client');
   api.use(['mongo-livedata', 'routepolicy', 'webapp'], 'server');
 
@@ -29,7 +29,7 @@ Package.onUse(function (api) {
 
   // TODO these cannot be easily added by the subpackages, unfortunately
   // We add them as an asset so that they can be loaded later, asynchronously
-  api.addAssets('.npm/package/node_modules/share/webclient/ace.js', 'client');
+  api.addAssets('ace.js', 'client');
   api.addAssets('.npm/package/node_modules/share/webclient/cm.js', 'client');
 
   // Our files
