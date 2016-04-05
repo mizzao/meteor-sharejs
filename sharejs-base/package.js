@@ -27,10 +27,6 @@ Package.onUse(function (api) {
   // Add the ShareJS connectors
   api.addFiles('.npm/package/node_modules/share/webclient/textarea.js', 'client');
 
-  // TODO these cannot be easily added by the subpackages, unfortunately
-  // We add them as an asset so that they can be loaded later, asynchronously
-  api.addAssets('.npm/package/node_modules/share/webclient/cm.js', 'client');
-
   // Our files
   api.addFiles([
       'sharejs-templates.html',

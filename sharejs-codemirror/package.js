@@ -30,6 +30,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'templates.html',
-    'client.coffee'
+    'client.coffee',
+    'cm.js'
   ], 'client');
 });
