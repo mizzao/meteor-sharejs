@@ -1,8 +1,8 @@
 Package.describe({
-  name: "mizzao:sharejs-ace",
+  name: "davidsichau:sharejs-ace",
   summary: "ShareJS with the Ace Editor",
-  version: "1.1.9",
-  git: "https://github.com/mizzao/meteor-sharejs.git"
+  version: "1.3.0",
+  git: "https://github.com/davidsich../au/meteor-sharejs.git"
 });
 
 // Ugly-ass function stolen from http://stackoverflow.com/a/20794116/586086
@@ -51,12 +51,12 @@ function getFilesFromFolder(packageName, folder){
 }
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.2.0.1");
+  api.versionsFrom("1.3.0");
 
   api.use(['coffeescript', 'templating']);
 
-  api.use("mizzao:sharejs@0.7.5");
-  api.imply("mizzao:sharejs");
+  api.use("davidsichau:sharejs@0.8.0");
+  api.imply("davidsichau:sharejs");
 
   var _ = Npm.require("underscore");
 
@@ -65,11 +65,12 @@ Package.onUse(function (api) {
   api.addFiles(aceJS, 'client', { bare: true });
 
   // Add Ace files as assets that can be loaded by the client later
-  var aceSettings = getFilesFromFolder("mizzao:sharejs-ace", "ace-builds/src");
+  var aceSettings = getFilesFromFolder("davidsichau:sharejs-ace", "ace-builds/src");
   api.addAssets(_.without(aceSettings, aceJS), 'client');
-
+  
   api.addFiles([
     'templates.html',
-    'client.coffee'
+    'client.coffee',
+    'ace.js'
   ], 'client');
 });

@@ -1,17 +1,17 @@
 Package.describe({
-  name: "mizzao:sharejs-codemirror",
+  name: "davidsichau:sharejs-codemirror",
   summary: "ShareJS with the CodeMirror Editor",
   version: "4.12.0",
-  git: "https://github.com/mizzao/meteor-sharejs.git"
+  git: "https://github.com/davidsichau/meteor-sharejs.git"
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.0");
+  api.versionsFrom("1.3");
 
   api.use(['coffeescript', 'templating']);
 
-  api.use("mizzao:sharejs@0.7.0");
-  api.imply("mizzao:sharejs");
+  api.use("davidsichau:sharejs@0.8.0");
+  api.imply("davidsichau:sharejs");
 
   // CM editor for the client
   api.addFiles([
@@ -30,6 +30,7 @@ Package.onUse(function (api) {
 
   api.addFiles([
     'templates.html',
-    'client.coffee'
+    'client.coffee',
+    'cm.js'
   ], 'client');
 });
