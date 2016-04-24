@@ -1,8 +1,8 @@
 Package.describe({
-  name: "mizzao:sharejs",
+  name: "davidsichau:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
-  version: "0.8.0",
-  git: "https://github.com/mizzao/meteor-sharejs.git"
+  version: "0.8.1",
+  git: "https://github.com/davidsichau/meteor-sharejs.git"
 });
 
 Npm.depends({
@@ -12,7 +12,7 @@ Npm.depends({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.2.0.1");
+  api.versionsFrom("1.3.0");
 
   api.use(['coffeescript', 'underscore']);
   api.use(['handlebars', 'templating'], 'client');
@@ -54,7 +54,7 @@ Package.onTest(function (api) {
     'test-helpers'
   ]);
 
-  api.use("mizzao:sharejs");
+  api.use("davidsichau:sharejs");
 
   api.addFiles('tests/server_tests.coffee', 'server');
 });

@@ -1,28 +1,30 @@
-meteor-sharejs [![Build Status](https://travis-ci.org/mizzao/meteor-sharejs.svg)](https://travis-ci.org/mizzao/meteor-sharejs)
+meteor-sharejs
 ==============
+
+This is an fork from [https://github.com/mizzao/](https://github.com/mizzao/)
 
 Meteor smart package for transparently adding [ShareJS](https://github.com/share/ShareJS) editors to an app. Includes [CodeMirror](http://codemirror.net/) and the [Ace editor](http://ace.c9.io/).
 
-Demo app: http://documents.meteor.com ([source](demo))
+This package is only tested for meteor 1.3 or later
 
 ## Install
 
 For vanilla ShareJS with text only:
 
 ```
-$ meteor add mizzao:sharejs
+$ meteor add davidsichau:sharejs
 ```
 
-For ShareJS with the Ace editor (note the explicit version, see [#55](https://github.com/mizzao/meteor-sharejs/issues/55)):
+For ShareJS with the Ace editor
 
 ```
-$ meteor add mizzao:sharejs-ace@1.1.9
+$ meteor add  davidsichau:sharejs-ace
 ```
 
 For ShareJS with the CodeMirror editor:
 
 ```
-$ meteor add mizzao:sharejs-codemirror
+$ meteor add davidsichau:sharejs-codemirror
 ```
 
 ## Usage
