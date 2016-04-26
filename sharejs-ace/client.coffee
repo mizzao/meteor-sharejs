@@ -9,6 +9,7 @@ class ShareJSAceConnector extends ShareJSConnector
   rendered: (element) ->
     super
     @ace = ace.edit(element)
+    @ace.getSession().setValue("loading...")
     # Configure the editor if specified
     @configCallback?(@ace)
 

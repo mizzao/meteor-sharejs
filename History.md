@@ -1,5 +1,10 @@
 ## vNEXT
 
+## v0.8.0
+
+* supports Meteor 1.3
+* moved ace related stuff into sharejs-ace
+
 ## v0.7.5
 
 * Updates for Meteor 1.2.
