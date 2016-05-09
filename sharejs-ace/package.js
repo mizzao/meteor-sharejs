@@ -51,7 +51,7 @@ function getFilesFromFolder(packageName, folder){
 }
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.3.0");
+  api.versionsFrom("1.3");
 
   api.use(['coffeescript', 'templating']);
 
@@ -65,7 +65,7 @@ Package.onUse(function (api) {
   api.addFiles(aceJS, 'client', { bare: true });
 
   // Add Ace files as assets that can be loaded by the client later
-  var aceSettings = getFilesFromFolder("davidsichau:sharejs-ace", "ace-builds/src");
+  var aceSettings = getFilesFromFolder("mizzao:sharejs-ace", "ace-builds/src");
   api.addAssets(_.without(aceSettings, aceJS), 'client');
   
   api.addFiles([

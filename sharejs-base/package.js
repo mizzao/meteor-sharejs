@@ -12,7 +12,7 @@ Npm.depends({
 });
 
 Package.onUse(function (api) {
-  api.versionsFrom("1.3.0");
+  api.versionsFrom("1.3");
 
   api.use(['coffeescript', 'underscore']);
   api.use(['handlebars', 'templating'], 'client');
@@ -54,7 +54,7 @@ Package.onTest(function (api) {
     'test-helpers'
   ]);
 
-  api.use("davidsichau:sharejs");
+  api.use("mizzao:sharejs");
 
   api.addFiles('tests/server_tests.coffee', 'server');
 });
