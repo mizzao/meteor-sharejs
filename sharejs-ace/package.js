@@ -55,8 +55,8 @@ Package.onUse(function (api) {
 
   api.use(['coffeescript', 'templating']);
 
-  api.use("davidsichau:sharejs@0.8.0");
-  api.imply("davidsichau:sharejs");
+  api.use("mizzao:sharejs@0.8.0");
+  api.imply("mizzao:sharejs");
 
   var _ = Npm.require("underscore");
 
