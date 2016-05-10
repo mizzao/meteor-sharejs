@@ -1,8 +1,8 @@
 Package.describe({
-  name: "davidsichau:sharejs-ace",
+  name: "mizzao:sharejs-ace",
   summary: "ShareJS with the Ace Editor",
   version: "1.3.0",
-  git: "https://github.com/davidsich../au/meteor-sharejs.git"
+  git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
 // Ugly-ass function stolen from http://stackoverflow.com/a/20794116/586086

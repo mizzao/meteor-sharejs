@@ -1,5 +1,5 @@
 Package.describe({
-  name: "davidsichau:sharejs-codemirror",
+  name: "mizzao:sharejs-codemirror",
   summary: "ShareJS with the CodeMirror Editor",
   version: "4.12.1",
   git: "https://github.com/mizzao/meteor-sharejs.git"

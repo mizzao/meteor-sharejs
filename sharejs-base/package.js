@@ -1,8 +1,8 @@
 Package.describe({
-  name: "davidsichau:sharejs",
+  name: "mizzao:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
   version: "0.8.1",
-  git: "https://github.com/davidsichau/meteor-sharejs.git"
+  git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
 Npm.depends({
