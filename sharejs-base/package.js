@@ -31,12 +31,13 @@ Package.onUse(function (api) {
 Package.onTest(function (api) {
   api.use([
     'random',
-    'coffeescript',
+    'ecmascript',
+    'modules',
     'tinytest',
     'test-helpers'
   ]);
 
   api.use("mizzao:sharejs");
 
-  api.addFiles('tests/server_tests.coffee', 'server');
+  api.addFiles('tests/server_test.js', 'server');
 });
