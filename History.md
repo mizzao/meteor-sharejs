@@ -1,5 +1,11 @@
 ## vNEXT
 
+## v0.9.0
+
+* dependencies are imported as npm modules
+* Code is rewritten in ecmascript
+* used module system to reduce globals
+ 
 ## v0.8.0
 
 * supports Meteor 1.3

@@ -1,7 +1,7 @@
 Package.describe({
   name: "mizzao:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
-  version: "0.8.1",
+  version: "0.9.0",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
@@ -14,36 +14,18 @@ Npm.depends({
 Package.onUse(function (api) {
   api.versionsFrom("1.3");
 
-  api.use(['coffeescript', 'underscore']);
+  api.use(['underscore', 'ecmascript', 'modules']);
   api.use(['handlebars', 'templating'], 'client');
-  api.use(['mongo-livedata', 'routepolicy', 'webapp'], 'server');
+  api.use(['coffeescript', 'mongo-livedata', 'routepolicy', 'webapp'], 'server');
 
-  // ShareJS script files
-  api.addFiles([
-      '.npm/package/node_modules/share/node_modules/browserchannel/dist/bcsocket-uncompressed.js',
-      '.npm/package/node_modules/share/webclient/share.uncompressed.js'
-  ], 'client');
 
-  // Add the ShareJS connectors
-  api.addFiles('.npm/package/node_modules/share/webclient/textarea.js', 'client');
-
+  api.mainModule('sharejs-client.js', 'client');
+  api.mainModule('sharejs-server.js', 'server');
   // Our files
   api.addFiles([
-      'sharejs-templates.html',
-      'sharejs-client.coffee'
+      'sharejs-templates.html'
   ], 'client');
 
-  // Server files
-  api.addFiles([
-      'sharejs-meteor-auth.coffee',
-      'sharejs-server.coffee'
-  ], 'server');
-
-  // Export the ShareJS interface
-  api.export('ShareJS', 'server');
-
-  // For subpackages to extend client functionality
-  api.export('ShareJSConnector', 'client');
 });
 
 Package.onTest(function (api) {

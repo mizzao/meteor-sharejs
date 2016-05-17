@@ -6,9 +6,11 @@
 autopublish
 insecure
 standard-app-packages
-coffeescript
 stylus
-mizzao:sharejs-ace
+mizzao:sharejs
 mizzao:sharejs-codemirror
+mizzao:sharejs-ace
 twbs:bootstrap
 standard-minifiers
+modules
+ecmascript

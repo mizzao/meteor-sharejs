@@ -1,36 +1,24 @@
 Package.describe({
   name: "mizzao:sharejs-codemirror",
   summary: "ShareJS with the CodeMirror Editor",
-  version: "4.12.1",
+  version: "5.14.2",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
+Npm.depends({
+  codemirror: "5.14.2"
+});
+
 Package.onUse(function (api) {
-  api.versionsFrom("1.3");
+  api.versionsFrom("1.3.2");
 
-  api.use(['coffeescript', 'templating']);
+  api.use(['ecmascript', 'modules', 'templating']);
 
-  api.use("mizzao:sharejs@0.8.0");
+  api.use("mizzao:sharejs@0.9.0");
   api.imply("mizzao:sharejs");
 
-  // CM editor for the client
+  api.mainModule('client.js', 'client');
   api.addFiles([
-    'codemirror/lib/codemirror.js',
-    'codemirror/lib/codemirror.css',
-    'codemirror/theme/monokai.css',
-    'codemirror/addon/fold/foldgutter.css',
-    'codemirror/addon/fold/foldcode.js',
-    'codemirror/addon/fold/foldgutter.js',
-    'codemirror/addon/fold/indent-fold.js',
-    'codemirror/addon/hint/show-hint.js',
-    'codemirror/addon/display/placeholder.js',
-    'codemirror/addon/hint/show-hint.css'
-    /* include any extra codemirror ADDONS or MODES or THEMES here !!!! */
-  ], 'client', { bare: true });
-
-  api.addFiles([
-    'templates.html',
-    'client.coffee',
-    'cm.js'
+    'templates.html'
   ], 'client');
 });
