@@ -7,7 +7,7 @@ import { Blaze } from 'meteor/blaze'
 import { ShareJSConnector } from 'meteor/mizzao:sharejs'
 
 require('ace-builds/src/ace');
-ace.require('ace/config').set('basePath', 'https://cdn.jsdelivr.net/ace/1.2.2/min');
+ace.require('ace/config').set('basePath', '/packages/mizzao_sharejs-ace/.npm/package/node_modules/ace-builds/src/');
 UndoManager = ace.require('ace/undomanager').UndoManager;
 import './ace'
 
