@@ -1,10 +1,11 @@
 ## vNEXT
 
-## v0.9.0
+## v0.9.0 unreleased
 
 * dependencies are imported as npm modules
 * Code is rewritten in ecmascript
 * used module system to reduce globals
+* removed the authentication system, as it added no real security
  
 ## v0.8.0
 

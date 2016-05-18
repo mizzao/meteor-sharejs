@@ -16,7 +16,7 @@ Package.onUse(function (api) {
 
   api.use(['underscore', 'ecmascript', 'modules']);
   api.use(['handlebars', 'templating'], 'client');
-  api.use(['coffeescript', 'mongo-livedata', 'routepolicy', 'webapp'], 'server');
+  api.use(['mongo-livedata', 'routepolicy', 'webapp'], 'server');
 
 
   api.mainModule('sharejs-client.js', 'client');

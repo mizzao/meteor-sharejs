@@ -1,8 +1,6 @@
 // Creates a (persistent) ShareJS server
 // Based on https://github.com/share/ShareJS/wiki/Getting-started
 
-import "./sharejs-meteor-auth.coffee"
-
 import { Meteor } from 'meteor/meteor';
 
 const Future = Npm.require('fibers/future');
@@ -39,9 +37,6 @@ switch (options.db.type) {
          http://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html
          */
         options.db.client.open = function() {};
-        if (options.accounts_auth != null) {
-            options.auth = new MeteorAccountsAuthHandler(options.accounts_auth, options.db.client).handle;
-        }
         break;
     default:
         Meteor._debug("ShareJS: using unsupported db type " + options.db.type + ", falling back to in-memory.");

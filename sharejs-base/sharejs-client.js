@@ -13,8 +13,7 @@ export class ShareJSConnector {
 
     getOptions() {
         return {
-            origin: '//' + window.location.host + '/channel',
-            authentication: (typeof Meteor.userId === "function" ? Meteor.userId() : void 0) || null
+            origin: '//' + window.location.host + '/channel'
         };
     };
 
