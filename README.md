@@ -82,7 +82,7 @@ You can also use `db.type` of `none` to have all documents and operations in mem
 
 ### Meteor User-Accounts Integration
 
-The Authorization was removed in version 0.9.0, because the current implementation did not added any security as `Meteor.userId` is no secret token.
+The Authorization was removed in version 0.9.0, because the current implementation did not added any security as `Meteor.userId` is not a secret token.
 
 ## Advanced
 

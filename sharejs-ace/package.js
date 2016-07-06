@@ -66,7 +66,7 @@ Package.onUse(function (api) {
   var _ = Npm.require("underscore");
 
   // Add Ace files as assets that can be loaded by the client later
-  var aceSettings = getFilesFromFolder("mizzao:sharejs-ace", ".npm/package/node_modules/ace-builds/src");
+  var aceSettings = getFilesFromFolder("mizzao:sharejs-ace", ".npm/package/node_modules/ace-builds/src-noconflict");
   api.addAssets(aceSettings, 'client');
 
   api.mainModule('client.js', 'client');
