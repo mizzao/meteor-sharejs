@@ -2,7 +2,7 @@
  * Created by dsichau on 17.05.16.
  */
 
-import {ShareJS} from 'meteor/sharejs';
+import {ShareJS} from 'meteor/mizzao:sharejs';
 var Docs, Ops, sleep;
 
 Docs = new Meteor.Collection("docs");
