@@ -1,11 +1,13 @@
 ## vNEXT
 
-## v0.9.0 unreleased
+## v0.9.0 
 
 * dependencies are imported as npm modules
 * Code is rewritten in ecmascript
 * used module system to reduce globals
 * removed the authentication system, as it added no real security
+* codemirrror was updated to latest version
+* codemirror addons and themes are loaded as static assets
  
 ## v0.8.0
 
