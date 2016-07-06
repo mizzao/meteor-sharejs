@@ -1,3 +1,7 @@
+## v1.4.0
+
+ * Ace is added as npm dependencie
+
 ## v1.3.0
 
  * Support of Meteor 1.3

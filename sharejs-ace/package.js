@@ -1,8 +1,12 @@
 Package.describe({
   name: "mizzao:sharejs-ace",
   summary: "ShareJS with the Ace Editor",
-  version: "1.3.0",
+  version: "1.4.0",
   git: "https://github.com/mizzao/meteor-sharejs.git"
+});
+
+Npm.depends({
+  "ace-builds": "1.2.2"
 });
 
 // Ugly-ass function stolen from http://stackoverflow.com/a/20794116/586086
@@ -39,6 +43,7 @@ function getFilesFromFolder(packageName, folder){
 
   var isRunningFromApp = fs.existsSync(path.resolve("packages"));
   var packagePath = isRunningFromApp ? path.resolve("packages", packageName) : "";
+  console.log(packagePath);
 
   packagePath = path.resolve(packagePath);
   // chdir to our package directory
@@ -53,24 +58,19 @@ function getFilesFromFolder(packageName, folder){
 Package.onUse(function (api) {
   api.versionsFrom("1.3");
 
-  api.use(['coffeescript', 'templating']);
+  api.use(['ecmascript', 'modules', 'templating']);
 
-  api.use("mizzao:sharejs@0.8.0");
+  api.use("mizzao:sharejs@0.9.0");
   api.imply("mizzao:sharejs");
 
   var _ = Npm.require("underscore");
 
-  // Ace editor for the client
-  var aceJS = 'ace-builds/src/ace.js';
-  api.addFiles(aceJS, 'client', { bare: true });
-
   // Add Ace files as assets that can be loaded by the client later
-  var aceSettings = getFilesFromFolder("mizzao:sharejs-ace", "ace-builds/src");
-  api.addAssets(_.without(aceSettings, aceJS), 'client');
-  
+  var aceSettings = getFilesFromFolder("mizzao:sharejs-ace", ".npm/package/node_modules/ace-builds/src-noconflict");
+  api.addAssets(aceSettings, 'client');
+
+  api.mainModule('client.js', 'client');
   api.addFiles([
-    'templates.html',
-    'client.coffee',
-    'ace.js'
+    'templates.html'
   ], 'client');
 });
