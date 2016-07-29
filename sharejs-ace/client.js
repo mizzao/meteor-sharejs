@@ -21,8 +21,8 @@ class ShareJSAceConnector extends ShareJSConnector {
     rendered(element){
         super.rendered(element);
         this.ace = ace.edit(element);
-        this.ace.getSession().setValue("loading...");
         this.ace.$blockScrolling = Infinity;
+        this.ace.getSession().setValue("loading...");
         if (typeof this.configCallback === "function") {
             this.configCallback(this.ace);
         }

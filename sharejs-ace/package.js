@@ -1,7 +1,7 @@
 Package.describe({
   name: "mizzao:sharejs-ace",
   summary: "ShareJS with the Ace Editor",
-  version: "1.4.0",
+  version: "1.4.1",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
