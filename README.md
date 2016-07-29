@@ -86,7 +86,7 @@ The Authorization was removed in version 0.9.0, because the current implementati
 
 ## Advanced
 
-You can access the [ShareJS Server API](https://github.com/share/ShareJS/wiki/Server-api) at `ShareJS.model`. For example, you may want to delete documents ops when the document is deleted in your app. See the demo for an example.
+You can access the [ShareJS Server API](https://github.com/share/ShareJS/wiki/Server-api) via `import { ShareJS } from 'meteor/mizzao:sharejs'`. For example, you may want to delete documents ops when the document is deleted in your app. See the demo for an example.
 
 ## Notes
 
