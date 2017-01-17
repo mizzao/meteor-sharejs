@@ -1,0 +1,23 @@
+{
+  "name": "sharejs-demo",
+  "version": "1.0.0",
+  "description": "meteor-documents-demo =====================",
+  "main": "index.js",
+  "dependencies": {
+    "babel-runtime": "^6.20.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mizzao/meteor-sharejs.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mizzao/meteor-sharejs/issues"
+  },
+  "homepage": "https://github.com/mizzao/meteor-sharejs#readme"
+}
