@@ -1,12 +1,12 @@
 Package.describe({
   name: "mizzao:sharejs-codemirror",
   summary: "ShareJS with the CodeMirror Editor",
-  version: "5.14.2",
+  version: "5.22.0",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
 Npm.depends({
-  codemirror: "5.14.2"
+  codemirror: "5.22.0"
 });
 
 
