@@ -12,7 +12,7 @@ export const ShareJS = ShareJS || {};
 const options = _.extend({
     staticPath: null,
     db: {
-        type: 'mongo', // Default option is Mongo because Meteor provides it
+        type: 'none', // Default option is none as it throws errors in meteor 1.4 due to issues in upstream sharejs
         opsCollectionPerDoc: false // A doc/op indexed collection keeps the namespace cleaner in a Meteor app.
     }
 }, (ref = Meteor.settings.sharejs) != null ? ref.options : void 0);

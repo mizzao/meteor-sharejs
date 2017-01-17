@@ -1,5 +1,9 @@
 ## vNEXT
 
+## v0.10.0
+
+ * Switched to in memory storage as the storage in the db leads to problem with the wiretiger engine of meteor 1.4
+
 ## v0.9.0 
 
 * dependencies are imported as npm modules
