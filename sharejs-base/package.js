@@ -1,7 +1,7 @@
 Package.describe({
   name: "mizzao:sharejs",
   summary: "server (& client library) to allow concurrent editing of any kind of content",
-  version: "0.9.0",
+  version: "0.10.0",
   git: "https://github.com/mizzao/meteor-sharejs.git"
 });
 
