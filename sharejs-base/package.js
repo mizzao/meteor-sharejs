@@ -9,7 +9,8 @@ Npm.depends({
   // Fork of 0.6.3 that doesn't require("mongodb"):
   // https://github.com/meteor/meteor/issues/532#issuecomment-82635979
   // Includes "Failed to parse" bugfix
-  share: "https://github.com/qeek/sharejs-tmp-fork/tarball/94c059bd4da24de8e6e90fb83484dd9c7b0efd59"
+  share: "https://github.com/qeek/sharejs-tmp-fork/tarball/94c059bd4da24de8e6e90fb83484dd9c7b0efd59",
+  browserchannel: '1.2.0'
 });
 
 Package.onUse(function (api) {
