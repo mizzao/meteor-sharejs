@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 
 const Future = Npm.require('fibers/future');
 
-export const ShareJS = ShareJS || {};
+export const ShareJS = {};
 // See docs for options. Uses mongo by default to enable persistence.
 
 // Using special options from https://github.com/share/ShareJS/blob/master/src/server/index.coffee
