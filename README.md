@@ -74,6 +74,21 @@ Template.foo.config = function () {
 
 See this [example config file](settings-example.json) for the various settings that you can use.
 
+If you are running on mobile via Meteor's Cordova, you'll also need to specify a `cors` rule to allow the mobile device's `localhost` server to make a cross-origin request, such as the following:
+
+```json
+{
+  "sharejs": {
+    "options": {
+      "browserChannel": {
+        "cors": "*"
+      },
+      ...
+    }
+  }
+}
+```
+
 ### Persistence
 
 By default, the documents and edit operations will be persisted in Meteor's Mongo database. Mongo is the recommended usage as you don't need a separate database and user integration is supported. `"opsCollectionPerDoc": false` can be useful to set if you don't want a separate ops collection for each document.
