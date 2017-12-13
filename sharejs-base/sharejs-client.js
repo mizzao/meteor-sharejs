@@ -13,7 +13,7 @@ export class ShareJSConnector {
 
     getOptions() {
         return {
-            origin: Meteor.absoluteUrl('/channel')
+            origin: Meteor.absoluteUrl('channel')
         };
     };
 
