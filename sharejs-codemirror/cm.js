@@ -49,7 +49,9 @@
           console.error("Text does not match!");
           console.error("editor: " + editorText);
           console.error("ot:     " + otText);
-          return editor.setValue(sharedoc.getText());
+          suppress = true;
+          editor.setValue(sharedoc.getText());
+          suppress = false;
         }
       }, 0);
     };
