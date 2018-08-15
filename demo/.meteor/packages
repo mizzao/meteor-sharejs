@@ -3,14 +3,17 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-autopublish
-insecure
+autopublish@1.0.7
+insecure@1.0.7
 standard-app-packages
-stylus
+stylus@=2.513.8
 mizzao:sharejs
 mizzao:sharejs-codemirror
 mizzao:sharejs-ace
 twbs:bootstrap
-standard-minifiers
-modules
-ecmascript
+modules@0.12.2
+ecmascript@0.11.1
+standard-minifier-css
+standard-minifier-js
+shell-server
+dynamic-import

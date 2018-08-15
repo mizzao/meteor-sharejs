@@ -1,4 +1,12 @@
+import 'codemirror/addon/fold/foldcode';
+import 'codemirror/addon/fold/foldgutter';
+import 'codemirror/addon/fold/indent-fold';
+import 'codemirror/addon/hint/show-hint';
+import 'codemirror/addon/display/placeholder';
 
+import 'codemirror/theme/monokai.css';
+import 'codemirror/addon/fold/foldgutter.css';
+import 'codemirror/addon/hint/show-hint.css';
 
 Template.docList.helpers({
   documents: function() {

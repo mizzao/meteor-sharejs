@@ -70,6 +70,19 @@ Template.foo.config = function () {
 };
 ```
 
+CodeMirror is an peer NPM dependency: you must `meteor npm install codemirror`.
+The advantage of this approach is that you can choose which version to include.
+To include a CodeMirror [theme](https://codemirror.net/theme/) or
+[addon](https://codemirror.net/doc/manual.html#addons), use an `import`
+statement to include the module or CSS.  For example:
+
+```js
+import 'codemirror/theme/monokai.css';          // theme
+import 'codemirror/addon/fold/foldcode';        // addon
+import 'codemirror/addon/fold/foldgutter';      // addon needing CSS
+import 'codemirror/addon/fold/foldgutter.css';  // addon's CSS
+```
+
 ## Server Configuration
 
 See this [example config file](settings-example.json) for the various settings that you can use.
