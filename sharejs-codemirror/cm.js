@@ -57,7 +57,11 @@
       this.del(0, sharedoc.getText('\n').length);
       this.insert(0, editor.getValue());
     } else {
+      // Prevent immediate undo from going before initially loaded text.
+      var undoDepth = editor.getOption('undoDepth');
+      editor.setOption('undoDepth', 0);
       editor.setValue(sharedoc.getText());
+      editor.setOption('undoDepth', undoDepth);
     }
     check();
     suppress = false;
